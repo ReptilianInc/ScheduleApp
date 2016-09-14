@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/mon"
+        android:title="@string/monday"
+        android:icon="@mipmap/ic_subject_black_24dp"
+        android:orderInCategory="1"/>
+    <item
+        android:id="@+id/tue"
+        android:title="@string/tuesday"
+        android:icon="@mipmap/ic_subject_black_24dp"
+        android:orderInCategory="2"/>
+    <item
+        android:id="@+id/wed"
+        android:title="@string/wednesday"
+        android:icon="@mipmap/ic_subject_black_24dp"
+        android:orderInCategory="3"/>
+    <item
+        android:id="@+id/thu"
+        android:title="@string/thursday"
+        android:icon="@mipmap/ic_subject_black_24dp"
+        android:orderInCategory="4"/>
+    <item
+        android:id="@+id/fri"
+        android:title="@string/friday"
+        android:icon="@mipmap/ic_subject_black_24dp"
+        android:orderInCategory="5"/>
+    <item
+        android:id="@+id/sat"
+        android:title="@string/saturday"
+        android:icon="@mipmap/ic_subject_black_24dp"
+        android:orderInCategory="6"/>
+</menu>

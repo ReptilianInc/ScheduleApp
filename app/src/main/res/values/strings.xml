@@ -1,0 +1,35 @@
+<resources>
+    <string name="app_name">Расписание</string>
+    <string name="action_settings">Settings</string>
+    <string name="today">Сегодня</string>
+    <string name="monday">Понедельник</string>
+    <string name="tuesday">Вторник</string>
+    <string name="wednesday">Среда</string>
+    <string name="thursday">Четверг</string>
+    <string name="friday">Пятница</string>
+    <string name="saturday">Суббота</string>
+    <string name="even_week">Чётная</string>
+    <string name="odd_week">Нечётная</string>
+    <string name="add">Добавить предмет</string>
+    <string name="preferences">Настройки</string>
+    <string name="about">Справка</string>
+    <string name="title_activity_add_new_subject">Создать запись</string>
+    <string name="name">Название предмета</string>
+    <string name="teacher_name">Имя преподавателя</string>
+    <string name="audit">Номер аудитории</string>
+    <string name="change_it">Коснитесь, чтобы назначить</string>
+    <string name="day">День недели</string>
+    <string name="week_textview">Неделя</string>
+    <string name="textview_name">Время начала</string>
+    <string name="textview2_name">Время окончания</string>
+    <string name="save">Сохранить</string>
+    <string name="name_of_day_fragment">Выберите день недели:</string>
+    <string name="name_of_week_fragment">Выберите тип недели:</string>
+    <string name="name_of_time_fragment">Назначьте время:</string>
+    <string name="title_activity_settings">Настройки</string>
+    <string name="clear_all">Удалить все записи</string>
+    <string name="set_first_week">Начать отчёт недель с текущей недели</string>
+    <string name="message">Вы уверены? Отменить это действие будет невозможно.</string>
+    <string name="title_set_week">Установить номер недели:</string>
+    <string name="title_activity_about">Справка</string>
+</resources>
