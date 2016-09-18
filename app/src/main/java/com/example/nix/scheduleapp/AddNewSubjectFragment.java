@@ -64,7 +64,6 @@ public class AddNewSubjectFragment extends Fragment {
         mEndView = (TextView) v.findViewById(R.id.end_text);
         mWeekTypeView = (TextView) v.findViewById(R.id.week_type);
         initText();
-
         mDayOfWeekView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

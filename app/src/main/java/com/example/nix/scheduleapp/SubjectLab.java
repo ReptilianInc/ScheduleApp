@@ -30,24 +30,6 @@ public class SubjectLab {
         mContext = context.getApplicationContext();
         mDatabase = new SubjectBaseHelper(mContext).getWritableDatabase();
     }
-    public List<Subject> getSubjects()
-    {
-        List<Subject> subjects = new ArrayList<>();
-        SubjectCursorWrapper cursor = querySubjects(null, null);
-        try
-        {
-            cursor.moveToFirst();
-            while (!cursor.isAfterLast())
-            {
-                subjects.add(cursor.getSubject());
-                cursor.moveToNext();
-            }
-        } finally
-        {
-            cursor.close();
-        }
-        return subjects;
-    }
     public Subject getSubject(UUID id)
     {
         SubjectCursorWrapper cursor = querySubjects(
@@ -114,17 +96,6 @@ public class SubjectLab {
         }
         return Subjects;
     }
-    /*public List<Subject> getOddSubjects(int day){
-        List<Subject> OddSubjects = new ArrayList<>();
-        for (Subject subject : mSubjects)
-        {
-            if (subject.isWeekType() == 2 && subject.getDay() == day)
-            {
-                OddSubjects.add(subject);
-            }
-        }
-        return OddSubjects;
-    }*/
     private SubjectCursorWrapper querySubjects(String whereClause, String[] whereArgs)
     {
         Cursor cursor = mDatabase.query(

@@ -21,14 +21,6 @@ public class Subject {
     public Subject(UUID id){
         mId = id;
     }
-    public Subject(String name, String teacher, String auditory, int weekType, int day){
-        mName = name;
-        mTeacherName = teacher;
-        mAuditory = auditory;
-        mWeekType = weekType;
-        mDay = day;
-        mId = UUID.randomUUID();
-    }
     public Subject (Subject subjectParent){
         mName = subjectParent.getName();
         mTeacherName = subjectParent.getTeacherName();
