@@ -16,7 +16,7 @@ public class SubjectCursorWrapper extends CursorWrapper {
     {
         super(cursor);
     }
-    public Subject getSubject(int weekTypeNeed, int dayNeed){ //рашка говно путин чмо
+    public Subject getSubject(int weekTypeNeed, int dayNeed){
         int weektype = getInt(getColumnIndex(SubjectTable.Cols.WEEKTYPE));
         int day = getInt(getColumnIndex(SubjectTable.Cols.DAY));
         if (weektype == weekTypeNeed && day == dayNeed){
