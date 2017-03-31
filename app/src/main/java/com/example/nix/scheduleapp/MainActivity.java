@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
@@ -31,11 +32,13 @@ public class MainActivity extends AppCompatActivity {
     private int day;
     private Bundle bundle;
     private SharedPreferences mSharedPreferences;
+    private boolean VISIBLE_BUTTON = false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         mToolbar = (Toolbar) findViewById(R.id.toolbar);
+        mToolbar.setTitle("Сегодня");
         mFab = (FloatingActionButton)findViewById(R.id.fab);
         fm = getSupportFragmentManager();
         fragment = fm.findFragmentById(R.id.content_fragment);
@@ -53,88 +56,96 @@ public class MainActivity extends AppCompatActivity {
         final NavigationView navigationview = (NavigationView) findViewById(R.id.navigation);
         navigationview.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
-            public boolean onNavigationItemSelected(MenuItem item) {
+            public boolean onNavigationItemSelected(final MenuItem item) {
                 mDrawerLayout.closeDrawers();
-                switch (item.getItemId()){
-                    case R.id.mon:
-                        fm.beginTransaction()
-                                .remove(fragment)
-                                .commit();
-                        mToolbar.setTitle("Понедельник");
-                        day = 2;
-                        bundle.putInt(DATA, day);
-                        fragment = new SubjectsOfDayFragment();
-                        fragment.setArguments(bundle);
-                        fm.beginTransaction()
-                                .add(R.id.content_fragment, fragment)
-                                .commit();
-                        return true;
-                    case R.id.tue:
-                        fm.beginTransaction()
-                                .remove(fragment)
-                                .commit();
-                        mToolbar.setTitle("Вторник");
-                        day = 3;
-                        bundle.putInt(DATA, day);
-                        fragment = new SubjectsOfDayFragment();
-                        fragment.setArguments(bundle);
-                        fm.beginTransaction()
-                                .add(R.id.content_fragment, fragment)
-                                .commit();
-                        return true;
-                    case R.id.wed:
-                        fm.beginTransaction()
-                                .remove(fragment)
-                                .commit();
-                        mToolbar.setTitle("Среда");
-                        day = 4;
-                        bundle.putInt(DATA, day);
-                        fragment = new SubjectsOfDayFragment();
-                        fragment.setArguments(bundle);
-                        fm.beginTransaction()
-                                .add(R.id.content_fragment, fragment)
-                                .commit();
-                        return true;
-                    case R.id.thu:
-                        fm.beginTransaction()
-                                .remove(fragment)
-                                .commit();
-                        mToolbar.setTitle("Четверг");
-                        day = 5;
-                        bundle.putInt(DATA, day);
-                        fragment = new SubjectsOfDayFragment();
-                        fragment.setArguments(bundle);
-                        fm.beginTransaction()
-                                .add(R.id.content_fragment, fragment)
-                                .commit();
-                        return true;
-                    case R.id.fri:
-                        fm.beginTransaction()
-                                .remove(fragment)
-                                .commit();
-                        mToolbar.setTitle("Пятница");
-                        day = 6;
-                        bundle.putInt(DATA, day);
-                        fragment = new SubjectsOfDayFragment();
-                        fragment.setArguments(bundle);
-                        fm.beginTransaction()
-                                .add(R.id.content_fragment, fragment)
-                                .commit();
-                        return true;
-                    case R.id.sat:
-                        fm.beginTransaction()
-                                .remove(fragment)
-                                .commit();
-                        mToolbar.setTitle("Суббота");
-                        day = 7;
-                        bundle.putInt(DATA, day);
-                        fragment = new SubjectsOfDayFragment();
-                        fragment.setArguments(bundle);
-                        fm.beginTransaction()
-                                .add(R.id.content_fragment, fragment)
-                                .commit();
-                        return true;
-                }
+                VISIBLE_BUTTON = true;
+                invalidateOptionsMenu();
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        switch (item.getItemId()){
+                            case R.id.mon:
+                                fm.beginTransaction()
+                                        .remove(fragment)
+                                        .commit();
+                                mToolbar.setTitle("Понедельник");
+                                day = 2;
+                                bundle.putInt(DATA, day);
+                                fragment = new SubjectsOfDayFragment();
+                                fragment.setArguments(bundle);
+                                fm.beginTransaction()
+                                        .add(R.id.content_fragment, fragment)
+                                        .commit();
+                                break;
+                            case R.id.tue:
+                                fm.beginTransaction()
+                                        .remove(fragment)
+                                        .commit();
+                                mToolbar.setTitle("Вторник");
+                                day = 3;
+                                bundle.putInt(DATA, day);
+                                fragment = new SubjectsOfDayFragment();
+                                fragment.setArguments(bundle);
+                                fm.beginTransaction()
+                                        .add(R.id.content_fragment, fragment)
+                                        .commit();
+                                break;
+                            case R.id.wed:
+                                fm.beginTransaction()
+                                        .remove(fragment)
+                                        .commit();
+                                mToolbar.setTitle("Среда");
+                                day = 4;
+                                bundle.putInt(DATA, day);
+                                fragment = new SubjectsOfDayFragment();
+                                fragment.setArguments(bundle);
+                                fm.beginTransaction()
+                                        .add(R.id.content_fragment, fragment)
+                                        .commit();
+                                break;
+                            case R.id.thu:
+                                fm.beginTransaction()
+                                        .remove(fragment)
+                                        .commit();
+                                mToolbar.setTitle("Четверг");
+                                day = 5;
+                                bundle.putInt(DATA, day);
+                                fragment = new SubjectsOfDayFragment();
+                                fragment.setArguments(bundle);
+                                fm.beginTransaction()
+                                        .add(R.id.content_fragment, fragment)
+                                        .commit();
+                                break;
+                            case R.id.fri:
+                                fm.beginTransaction()
+                                        .remove(fragment)
+                                        .commit();
+                                mToolbar.setTitle("Пятница");
+                                day = 6;
+                                bundle.putInt(DATA, day);
+                                fragment = new SubjectsOfDayFragment();
+                                fragment.setArguments(bundle);
+                                fm.beginTransaction()
+                                        .add(R.id.content_fragment, fragment)
+                                        .commit();
+                                break;
+                            case R.id.sat:
+                                fm.beginTransaction()
+                                        .remove(fragment)
+                                        .commit();
+                                mToolbar.setTitle("Суббота");
+                                day = 7;
+                                bundle.putInt(DATA, day);
+                                fragment = new SubjectsOfDayFragment();
+                                fragment.setArguments(bundle);
+                                fm.beginTransaction()
+                                        .add(R.id.content_fragment, fragment)
+                                        .commit();
+                                break;
+                        }
+                    }
+                },200);
+
                 return false;
             }
         });
@@ -150,13 +161,16 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu){
         getMenuInflater().inflate(R.menu.menu_main, menu);
-        mToolbar.setTitle("Сегодня");
+        MenuItem toggleItem = menu.findItem(R.id.home);
+        toggleItem.setVisible(VISIBLE_BUTTON);
         return true;
     }
     @Override
     public boolean onOptionsItemSelected(MenuItem item){
         switch (item.getItemId()){
             case R.id.home:
+                invalidateOptionsMenu();
+                VISIBLE_BUTTON = false;
                 fm.beginTransaction()
                         .remove(fragment)
                         .commit();

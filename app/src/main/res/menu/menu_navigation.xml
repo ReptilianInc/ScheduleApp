@@ -1,33 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:title="@string/homework"
+          android:id="@+id/hw"
+          android:icon="@mipmap/ic_chrome_reader_mode_black_24dp"/>
+    <item android:title="@string/teachers"
+          android:id="@+id/teach"
+          android:icon="@mipmap/ic_account_box_black_24dp"/>
+    <item android:title="@string/books"
+          android:id="@+id/ex"
+          android:icon="@mipmap/ic_book_black_24dp"/>
+<item android:title="@string/subjects_title"
+          android:checkable="true">
+    <menu>
     <item
         android:id="@+id/mon"
-        android:title="@string/monday"
-        android:icon="@mipmap/ic_subject_black_24dp"
-        android:orderInCategory="1"/>
+        android:title="@string/monday"/>
     <item
         android:id="@+id/tue"
-        android:title="@string/tuesday"
-        android:icon="@mipmap/ic_subject_black_24dp"
-        android:orderInCategory="2"/>
+        android:title="@string/tuesday"/>
     <item
         android:id="@+id/wed"
-        android:title="@string/wednesday"
-        android:icon="@mipmap/ic_subject_black_24dp"
-        android:orderInCategory="3"/>
+        android:title="@string/wednesday"/>
     <item
         android:id="@+id/thu"
-        android:title="@string/thursday"
-        android:icon="@mipmap/ic_subject_black_24dp"
-        android:orderInCategory="4"/>
+        android:title="@string/thursday"/>
     <item
         android:id="@+id/fri"
-        android:title="@string/friday"
-        android:icon="@mipmap/ic_subject_black_24dp"
-        android:orderInCategory="5"/>
+        android:title="@string/friday"/>
     <item
         android:id="@+id/sat"
-        android:title="@string/saturday"
-        android:icon="@mipmap/ic_subject_black_24dp"
-        android:orderInCategory="6"/>
+        android:title="@string/saturday"/>
+     </menu>
+</item>
 </menu>

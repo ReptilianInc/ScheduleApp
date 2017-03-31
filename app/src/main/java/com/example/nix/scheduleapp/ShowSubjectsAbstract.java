@@ -23,7 +23,6 @@ public abstract class ShowSubjectsAbstract extends Fragment{
         public TextView mDateTextView;
         public TextView mTeacherTextView;
         public TextView mAudView;
-        public RelativeLayout mRelativeLayout;
         public Subject mSubjectExample;
         public NewSubjectViewHolder(View itemView){
             super(itemView);
@@ -31,7 +30,6 @@ public abstract class ShowSubjectsAbstract extends Fragment{
             mDateTextView = (TextView)itemView.findViewById(R.id.date_view);
             mTeacherTextView = (TextView)itemView.findViewById(R.id.teacher_view);
             mAudView = (TextView)itemView.findViewById(R.id.audit_view);
-            mRelativeLayout = (RelativeLayout)itemView.findViewById(R.id.shedule_item_background);
             itemView.setOnCreateContextMenuListener(this);
         }
         public void bindSubject(Subject subject){
@@ -66,6 +64,14 @@ public abstract class ShowSubjectsAbstract extends Fragment{
                 public boolean onMenuItemClick(MenuItem item) {
                     SubjectLab.get(getActivity()).deleteSubject(mSubjectExample);
                     updateUI();
+                    return false;
+                }
+            });
+            menu.add(0, v.getId(), 0, "Домашнее задание").setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+                @Override
+                public boolean onMenuItemClick(MenuItem item) {
+                    Intent intent = new Intent(getContext(), HomeWorkActivity.class);
+                    startActivity(intent);
                     return false;
                 }
             });

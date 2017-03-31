@@ -22,16 +22,21 @@
             android:name=".AddNewSubjectActivity"
             android:label="@string/title_activity_add_new_subject"
             android:parentActivityName=".MainActivity"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:theme="@style/AppTheme">
         </activity>
         <activity
             android:name=".SettingsActivity"
             android:label="@string/title_activity_settings"
             android:parentActivityName=".MainActivity"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:theme="@style/AppTheme">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.nix.scheduleapp.MainActivity"/>
+        </activity>
+        <activity android:name=".HomeWorkActivity"
+            android:label="@string/homework_activity"
+            android:theme="@style/AppTheme"
+            android:parentActivityName=".MainActivity">
         </activity>
     </application>
 

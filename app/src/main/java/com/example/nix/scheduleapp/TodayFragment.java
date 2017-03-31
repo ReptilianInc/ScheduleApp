@@ -31,6 +31,7 @@ public class TodayFragment extends ShowSubjectsAbstract {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
         View v = inflater.inflate(R.layout.content_monday, container, false);
         mRecyclerView = (RecyclerView) v.findViewById(R.id.recycler_monday);
+        mRecyclerView.addItemDecoration(new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL_LIST));
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         updateUI();
         return v;

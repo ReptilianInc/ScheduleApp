@@ -1,69 +1,61 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v7.widget.CardView
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    xmlns:card_view="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:id="@+id/cardview"
-    android:layout_margin="4dp"
-    card_view:cardCornerRadius="4dp">
-<RelativeLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="@color/colorWhite"
-    android:id="@+id/shedule_item_background">
-
+    android:background="@color/colorWhite">
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/name_view"
         tools:text  = "Философия"
         android:textSize="28sp"
-        android:textStyle="bold"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="16dp"
         android:layout_marginLeft="16dp"
         android:layout_marginStart="16dp"
-        android:layout_marginBottom="5dp"/>
+        android:layout_marginRight="16dp"
+        android:layout_marginEnd="16dp"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/teacher_view"
         android:layout_marginLeft="16dp"
         android:layout_marginStart="16dp"
-        android:layout_marginBottom="5dp"
+        android:layout_marginTop="4dp"
         tools:text="Чмошников Д. И."
         android:layout_below="@+id/name_view"
-        android:textSize="18sp"/>
-    <TextView
+        android:textSize="16sp"/>
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/date_view"
-        android:text  = "08:30-10:00"
+        android:orientation="horizontal"
         android:layout_below="@+id/teacher_view"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
+        android:layout_marginTop="4dp"
         android:layout_marginLeft="16dp"
         android:layout_marginStart="16dp"
-        android:layout_marginBottom="5dp"
-        android:textColor="@color/colorAccent"
-        android:textStyle="bold"
-        android:textSize="15sp"/>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/audit_view"
-        tools:text = "501A"
-        android:layout_below="@+id/teacher_view"
-        android:layout_toRightOf="@+id/date_view"
-        android:layout_toEndOf = "@+id/date_view"
-        android:layout_marginLeft="16dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginBottom="5dp"
-        android:textColor="@color/colorAccent"
-        android:textStyle="bold"
-        android:textSize="15sp"/>
+        android:layout_marginBottom="16dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/date_view"
+            tools:text  = "08:30-10:00"
+            android:textColor="@color/colorAccent"
+            android:textStyle="bold"
+            android:textSize="15sp"
+            android:layout_marginRight="16dp"
+            android:layout_marginEnd="16dp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/audit_view"
+            tools:text = "501A"
+            android:textColor="@color/colorAccent"
+            android:textStyle="bold"
+            android:textSize="15sp"/>
+    </LinearLayout>
+
 </RelativeLayout>
-</android.support.v7.widget.CardView>

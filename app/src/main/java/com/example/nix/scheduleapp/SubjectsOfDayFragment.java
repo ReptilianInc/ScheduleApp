@@ -55,9 +55,9 @@ public class SubjectsOfDayFragment extends Fragment {
             Even.setArguments(mBundle);
             Odd.setArguments(mBundle);
             switch (position){
-                case 0 : return Even;
-                case 1 : return Odd;
-                default : return Even;
+                case 0 : return Odd;
+                case 1 : return Even;
+                default : return Odd;
             }
         }
         @Override
@@ -68,9 +68,9 @@ public class SubjectsOfDayFragment extends Fragment {
         public CharSequence getPageTitle(int position){
             switch (position){
                 case 0 :
-                    return "Чётная неделя";
-                case 1 :
                     return "Нечётная неделя";
+                case 1 :
+                    return "Чётная неделя";
             }
             return null;
         }
