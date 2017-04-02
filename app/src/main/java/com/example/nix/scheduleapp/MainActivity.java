@@ -16,7 +16,6 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-
 import java.util.Calendar;
 import java.util.Date;
 
@@ -47,6 +46,7 @@ public class MainActivity extends AppCompatActivity {
                 .add(R.id.content_fragment, fragment)
                 .commit();
         setSupportActionBar(mToolbar);
+        setWeek();
         bundle = new Bundle();
         mDrawerLayout = (DrawerLayout)findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, mDrawerLayout, mToolbar, R.string.app_name,
@@ -69,6 +69,8 @@ public class MainActivity extends AppCompatActivity {
                                         .remove(fragment)
                                         .commit();
                                 mToolbar.setTitle("Понедельник");
+                                mFab.setVisibility(FloatingActionButton.VISIBLE);
+                                mToolbar.setSubtitle("");
                                 day = 2;
                                 bundle.putInt(DATA, day);
                                 fragment = new SubjectsOfDayFragment();
@@ -82,6 +84,8 @@ public class MainActivity extends AppCompatActivity {
                                         .remove(fragment)
                                         .commit();
                                 mToolbar.setTitle("Вторник");
+                                mToolbar.setSubtitle("");
+                                mFab.setVisibility(FloatingActionButton.VISIBLE);
                                 day = 3;
                                 bundle.putInt(DATA, day);
                                 fragment = new SubjectsOfDayFragment();
@@ -95,6 +99,8 @@ public class MainActivity extends AppCompatActivity {
                                         .remove(fragment)
                                         .commit();
                                 mToolbar.setTitle("Среда");
+                                mToolbar.setSubtitle("");
+                                mFab.setVisibility(FloatingActionButton.VISIBLE);
                                 day = 4;
                                 bundle.putInt(DATA, day);
                                 fragment = new SubjectsOfDayFragment();
@@ -108,6 +114,8 @@ public class MainActivity extends AppCompatActivity {
                                         .remove(fragment)
                                         .commit();
                                 mToolbar.setTitle("Четверг");
+                                mToolbar.setSubtitle("");
+                                mFab.setVisibility(FloatingActionButton.VISIBLE);
                                 day = 5;
                                 bundle.putInt(DATA, day);
                                 fragment = new SubjectsOfDayFragment();
@@ -121,6 +129,8 @@ public class MainActivity extends AppCompatActivity {
                                         .remove(fragment)
                                         .commit();
                                 mToolbar.setTitle("Пятница");
+                                mToolbar.setSubtitle("");
+                                mFab.setVisibility(FloatingActionButton.VISIBLE);
                                 day = 6;
                                 bundle.putInt(DATA, day);
                                 fragment = new SubjectsOfDayFragment();
@@ -134,10 +144,24 @@ public class MainActivity extends AppCompatActivity {
                                         .remove(fragment)
                                         .commit();
                                 mToolbar.setTitle("Суббота");
+                                mToolbar.setSubtitle("");
+                                mFab.setVisibility(FloatingActionButton.VISIBLE);
                                 day = 7;
                                 bundle.putInt(DATA, day);
                                 fragment = new SubjectsOfDayFragment();
                                 fragment.setArguments(bundle);
+                                fm.beginTransaction()
+                                        .add(R.id.content_fragment, fragment)
+                                        .commit();
+                                break;
+                            case R.id.hw:
+                                fm.beginTransaction()
+                                        .remove(fragment)
+                                        .commit();
+                                mToolbar.setTitle("Список дисциплин");
+                                mToolbar.setSubtitle("");
+                                mFab.setVisibility(FloatingActionButton.INVISIBLE);
+                                fragment = new HomeworkFragment();
                                 fm.beginTransaction()
                                         .add(R.id.content_fragment, fragment)
                                         .commit();
@@ -170,6 +194,7 @@ public class MainActivity extends AppCompatActivity {
         switch (item.getItemId()){
             case R.id.home:
                 invalidateOptionsMenu();
+                setWeek();
                 VISIBLE_BUTTON = false;
                 fm.beginTransaction()
                         .remove(fragment)
@@ -190,6 +215,8 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public void onResume(){
         super.onResume();
+    }
+    private void setWeek(){
         mDate = new Date();
         mCalendar = Calendar.getInstance();
         mCalendar.setTime(mDate);

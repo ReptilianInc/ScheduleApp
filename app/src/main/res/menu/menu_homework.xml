@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android"
-      xmlns:app="http://schemas.android.com/apk/res-auto">
-    <item
-        android:id="@+id/change"
-        android:icon="@mipmap/ic_view_agenda_white_36dp"
-        android:title="@string/change_list"
-        app:showAsAction="ifRoom"/>
-</menu>

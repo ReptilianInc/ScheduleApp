@@ -8,7 +8,6 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import java.util.List;
@@ -62,16 +61,8 @@ public abstract class ShowSubjectsAbstract extends Fragment{
             menu.add(0, v.getId(), 0, "Удалить").setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
                 @Override
                 public boolean onMenuItemClick(MenuItem item) {
-                    SubjectLab.get(getActivity()).deleteSubject(mSubjectExample);
+                    ContentLab.get(getActivity()).deleteSubject(mSubjectExample);
                     updateUI();
-                    return false;
-                }
-            });
-            menu.add(0, v.getId(), 0, "Домашнее задание").setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
-                @Override
-                public boolean onMenuItemClick(MenuItem item) {
-                    Intent intent = new Intent(getContext(), HomeWorkActivity.class);
-                    startActivity(intent);
                     return false;
                 }
             });

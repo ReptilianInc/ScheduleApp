@@ -45,10 +45,10 @@ public class AddNewSubjectFragment extends Fragment {
             mSubject = new Subject();
         }
         if (copy == 2){ //копирование
-            mSubject = new Subject(SubjectLab.get(getActivity()).getSubject(crimeId));
+            mSubject = new Subject(ContentLab.get(getActivity()).getSubject(crimeId));
         }
         if(copy == 1){ // редактирование
-            mSubject = SubjectLab.get(getContext()).getSubject(crimeId);
+            mSubject = ContentLab.get(getContext()).getSubject(crimeId);
         }
     }
 
@@ -183,7 +183,7 @@ public class AddNewSubjectFragment extends Fragment {
     }
     @Override
     public boolean onOptionsItemSelected(MenuItem item){
-        SubjectLab subjectLab = SubjectLab.get(getActivity());
+        ContentLab contentLab = ContentLab.get(getActivity());
         switch (item.getItemId()){
             case R.id.save_button:
                 switch (copy){
@@ -194,7 +194,7 @@ public class AddNewSubjectFragment extends Fragment {
                             Toast.makeText(getContext(), "Данные заполнены некорректно", Toast.LENGTH_SHORT).show();
                         }else {
                             Toast.makeText(getActivity(), "Запись сохранена", Toast.LENGTH_SHORT).show();
-                            subjectLab.addSubject(mSubject);
+                            contentLab.addSubject(mSubject);
                             getActivity().finish();
 
                         }
@@ -206,7 +206,7 @@ public class AddNewSubjectFragment extends Fragment {
                             Toast.makeText(getContext(), "Данные заполнены некорректно", Toast.LENGTH_SHORT).show();
                         }else {
                             Toast.makeText(getActivity(), "Запись отредактирована", Toast.LENGTH_SHORT).show();
-                            subjectLab.updateSubject(mSubject);
+                            contentLab.updateSubject(mSubject);
                             getActivity().finish();
                         }
                         break;
@@ -217,7 +217,7 @@ public class AddNewSubjectFragment extends Fragment {
                             Toast.makeText(getContext(), "Данные заполнены некорректно", Toast.LENGTH_SHORT).show();
                         }else {
                             Toast.makeText(getActivity(), "Запись скопирована", Toast.LENGTH_SHORT).show();
-                            subjectLab.addSubject(mSubject);
+                            contentLab.addSubject(mSubject);
                             getActivity().finish();
                         }
                         break;

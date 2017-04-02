@@ -1,36 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <item android:title="@string/homework"
+    <item android:title="@string/subject_list"
           android:id="@+id/hw"
           android:icon="@mipmap/ic_chrome_reader_mode_black_24dp"/>
-    <item android:title="@string/teachers"
+    <item android:title="@string/teachers_list"
           android:id="@+id/teach"
           android:icon="@mipmap/ic_account_box_black_24dp"/>
-    <item android:title="@string/books"
+    <item android:title="@string/rooms_list"
           android:id="@+id/ex"
-          android:icon="@mipmap/ic_book_black_24dp"/>
-<item android:title="@string/subjects_title"
-          android:checkable="true">
-    <menu>
+          android:icon="@mipmap/ic_account_balance_black_24dp"/>
     <item
-        android:id="@+id/mon"
-        android:title="@string/monday"/>
-    <item
-        android:id="@+id/tue"
-        android:title="@string/tuesday"/>
-    <item
-        android:id="@+id/wed"
-        android:title="@string/wednesday"/>
-    <item
-        android:id="@+id/thu"
-        android:title="@string/thursday"/>
-    <item
-        android:id="@+id/fri"
-        android:title="@string/friday"/>
-    <item
-        android:id="@+id/sat"
-        android:title="@string/saturday"/>
-     </menu>
-</item>
+        android:checkable="false"
+        android:title="@string/subjects_title">
+        <menu>
+            <item
+                android:id="@+id/mon"
+                android:title="@string/monday"/>
+            <item
+                android:id="@+id/tue"
+                android:title="@string/tuesday"/>
+            <item
+                android:id="@+id/wed"
+                android:title="@string/wednesday"/>
+            <item
+                android:id="@+id/thu"
+                android:title="@string/thursday"/>
+            <item
+                android:id="@+id/fri"
+                android:title="@string/friday"/>
+            <item
+                android:id="@+id/sat"
+                android:title="@string/saturday"/>
+        </menu>
+    </item>
 </menu>

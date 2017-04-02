@@ -33,11 +33,6 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.nix.scheduleapp.MainActivity"/>
         </activity>
-        <activity android:name=".HomeWorkActivity"
-            android:label="@string/homework_activity"
-            android:theme="@style/AppTheme"
-            android:parentActivityName=".MainActivity">
-        </activity>
     </application>
 
 </manifest>

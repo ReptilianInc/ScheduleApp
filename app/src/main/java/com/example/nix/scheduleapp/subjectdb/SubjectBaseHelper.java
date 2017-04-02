@@ -1,9 +1,9 @@
-package com.example.nix.scheduleapp.database;
+package com.example.nix.scheduleapp.subjectdb;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import com.example.nix.scheduleapp.database.SubjectDbSchema.SubjectTable;
+import com.example.nix.scheduleapp.subjectdb.SubjectDbSchema.SubjectTable;
 
 /**
  * Created by Nix on 28.08.2016.

@@ -19,7 +19,7 @@ public class ProveItFragment extends DialogFragment {
                 .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        SubjectLab.get(getContext()).clearAll();
+                        ContentLab.get(getContext()).clearAll();
                         Toast.makeText(getContext(), "Данные удалены", Toast.LENGTH_SHORT).show();
                     }
                 })

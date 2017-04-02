@@ -1,10 +1,10 @@
-package com.example.nix.scheduleapp.database;
+package com.example.nix.scheduleapp.subjectdb;
 
 import android.database.Cursor;
 import android.database.CursorWrapper;
 
 import com.example.nix.scheduleapp.Subject;
-import com.example.nix.scheduleapp.database.SubjectDbSchema.SubjectTable;
+import com.example.nix.scheduleapp.subjectdb.SubjectDbSchema.SubjectTable;
 
 import java.util.UUID;
 

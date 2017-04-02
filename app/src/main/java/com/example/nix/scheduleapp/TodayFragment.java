@@ -5,7 +5,6 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -38,7 +37,7 @@ public class TodayFragment extends ShowSubjectsAbstract {
     }
     @Override
     protected void updateUI(){
-        SubjectLab subjectLab = SubjectLab.get(getActivity());
+        ContentLab contentLab = ContentLab.get(getActivity());
         List<Subject> subjects;
         int check_week;
         mDate = new Date();
@@ -56,48 +55,48 @@ public class TodayFragment extends ShowSubjectsAbstract {
         if (check_week % 2 == 0){
             switch (mCalendar.get(Calendar.DAY_OF_WEEK)){
                 case 2:
-                    subjects = subjectLab.getSubjects(1, 2);
+                    subjects = contentLab.getSubjects(1, 2);
                     break;
                 case 3:
-                    subjects = subjectLab.getSubjects(1,3);
+                    subjects = contentLab.getSubjects(1,3);
                     break;
                 case 4:
-                    subjects = subjectLab.getSubjects(1,4);
+                    subjects = contentLab.getSubjects(1,4);
                     break;
                 case 5:
-                    subjects = subjectLab.getSubjects(1,5);
+                    subjects = contentLab.getSubjects(1,5);
                     break;
                 case 6:
-                    subjects = subjectLab.getSubjects(1,6);
+                    subjects = contentLab.getSubjects(1,6);
                     break;
                 case 7:
-                    subjects = subjectLab.getSubjects(1,7);
+                    subjects = contentLab.getSubjects(1,7);
                     break;
                 default:
-                    subjects = subjectLab.getSubjects(0,0);
+                    subjects = contentLab.getSubjects(0,0);
             }
         }else {
             switch (mCalendar.get(Calendar.DAY_OF_WEEK)){
                 case 2:
-                    subjects = subjectLab.getSubjects(2, 2);
+                    subjects = contentLab.getSubjects(2, 2);
                     break;
                 case 3:
-                    subjects = subjectLab.getSubjects(2,3);
+                    subjects = contentLab.getSubjects(2,3);
                     break;
                 case 4:
-                    subjects = subjectLab.getSubjects(2,4);
+                    subjects = contentLab.getSubjects(2,4);
                     break;
                 case 5:
-                    subjects = subjectLab.getSubjects(2,5);
+                    subjects = contentLab.getSubjects(2,5);
                     break;
                 case 6:
-                    subjects = subjectLab.getSubjects(2,6);
+                    subjects = contentLab.getSubjects(2,6);
                     break;
                 case 7:
-                    subjects = subjectLab.getSubjects(2,7);
+                    subjects = contentLab.getSubjects(2,7);
                     break;
                 default:
-                    subjects = subjectLab.getSubjects(0,0);
+                    subjects = contentLab.getSubjects(0,0);
             }
         }
 

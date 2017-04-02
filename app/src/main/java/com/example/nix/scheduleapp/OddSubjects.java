@@ -1,7 +1,6 @@
 package com.example.nix.scheduleapp;
 
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -35,29 +34,29 @@ public class OddSubjects extends ShowSubjectsAbstract {
     }
     @Override
     protected void updateUI(){
-        SubjectLab subjectLab = SubjectLab.get(getActivity());
+        ContentLab contentLab = ContentLab.get(getActivity());
         List<Subject> subjects;
         switch (i){
             case 2:
-                subjects = subjectLab.getSubjects(2,2);
+                subjects = contentLab.getSubjects(2,2);
                 break;
             case 3:
-                subjects = subjectLab.getSubjects(2,3);
+                subjects = contentLab.getSubjects(2,3);
                 break;
             case 4:
-                subjects = subjectLab.getSubjects(2,4);
+                subjects = contentLab.getSubjects(2,4);
                 break;
             case 5:
-                subjects = subjectLab.getSubjects(2,5);
+                subjects = contentLab.getSubjects(2,5);
                 break;
             case 6:
-                subjects = subjectLab.getSubjects(2,6);
+                subjects = contentLab.getSubjects(2,6);
                 break;
             case 7:
-                subjects = subjectLab.getSubjects(2,7);
+                subjects = contentLab.getSubjects(2,7);
                 break;
             default:
-                subjects = subjectLab.getSubjects(0,0);
+                subjects = contentLab.getSubjects(0,0);
         }
 
         mAdapter = new NewSubjectAdapter(subjects);

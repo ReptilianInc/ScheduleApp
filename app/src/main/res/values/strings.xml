@@ -1,9 +1,9 @@
 <resources>
     <string name="app_name">Расписание</string>
     <string name="action_settings">Settings</string>
-    <string name="homework">Домашняя работа</string>
-    <string name="teachers">Преподаватели</string>
-    <string name="books">Пособия</string>
+    <string name="subject_list">Список дисциплин</string>
+    <string name="teachers_list">Список преподавателей</string>
+    <string name="rooms_list">Список аудиторий</string>
     <string name="subjects_title">Дни недели</string>
     <string name="today">Сегодня</string>
     <string name="monday">Понедельник</string>
@@ -39,6 +39,5 @@
     <string name="message">Вы уверены? Отменить это действие будет невозможно.</string>
     <string name="title_set_week">Установить номер недели:</string>
     <string name="title_activity_about">Справка</string>
-    <string name="homework_activity">Домашнее задание</string>
-    <string name="change_list">Изменить вид</string>
+    <string name="add_discipline_or_hw">Добавить элемент&#8230;</string>
 </resources>

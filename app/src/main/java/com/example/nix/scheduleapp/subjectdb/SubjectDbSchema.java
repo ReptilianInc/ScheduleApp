@@ -1,4 +1,4 @@
-package com.example.nix.scheduleapp.database;
+package com.example.nix.scheduleapp.subjectdb;
 
 /**
  * Created by Nix on 28.08.2016.

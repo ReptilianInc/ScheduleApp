@@ -4,9 +4,10 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import com.example.nix.scheduleapp.database.SubjectBaseHelper;
-import com.example.nix.scheduleapp.database.SubjectCursorWrapper;
-import com.example.nix.scheduleapp.database.SubjectDbSchema.SubjectTable;
+import com.example.nix.scheduleapp.disciplinedb.DisciplineBaseHelper;
+import com.example.nix.scheduleapp.subjectdb.SubjectBaseHelper;
+import com.example.nix.scheduleapp.subjectdb.SubjectCursorWrapper;
+import com.example.nix.scheduleapp.subjectdb.SubjectDbSchema.SubjectTable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -14,21 +15,23 @@ import java.util.UUID;
 /**
  * Created by Nix on 24.08.2016.
  */
-public class SubjectLab {
-    private static SubjectLab sSubjectLab;
+public class ContentLab {
+    private static ContentLab sContentLab;
     private Context mContext;
     private SQLiteDatabase mDatabase;
-    public static SubjectLab get(Context context)
+    private SQLiteDatabase mDisciplineDatabase;
+    public static ContentLab get(Context context)
     {
-        if (sSubjectLab == null)
+        if (sContentLab == null)
         {
-            sSubjectLab = new SubjectLab(context);
+            sContentLab = new ContentLab(context);
         }
-        return sSubjectLab;
+        return sContentLab;
     }
-    private SubjectLab (Context context) {
+    private ContentLab(Context context) {
         mContext = context.getApplicationContext();
         mDatabase = new SubjectBaseHelper(mContext).getWritableDatabase();
+        mDisciplineDatabase = new DisciplineBaseHelper(mContext).getWritableDatabase();
     }
     public Subject getSubject(UUID id)
     {
