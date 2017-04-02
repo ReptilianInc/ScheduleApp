@@ -3,11 +3,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@color/colorWhite">
-    <ExpandableListView
-        android:id="@+id/exListView"
+    <android.support.v7.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@+id/button_add_hw"/>
+        android:id="@+id/dis_rec"
+        android:layout_above="@+id/button_add_hw">
+    </android.support.v7.widget.RecyclerView>
 <Button
     android:layout_width="match_parent"
     android:layout_height="wrap_content"

@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import com.example.nix.scheduleapp.disciplinedb.DisciplineBaseHelper;
+import com.example.nix.scheduleapp.model.Subject;
 import com.example.nix.scheduleapp.subjectdb.SubjectBaseHelper;
 import com.example.nix.scheduleapp.subjectdb.SubjectCursorWrapper;
 import com.example.nix.scheduleapp.subjectdb.SubjectDbSchema.SubjectTable;

@@ -1,4 +1,4 @@
-package com.example.nix.scheduleapp;
+package com.example.nix.scheduleapp.model;
 
 import java.util.UUID;
 
@@ -19,7 +19,10 @@ public class Discipline {
         mTitle = disciplineParent.getTitle();
         mId = UUID.randomUUID();
     }
-
+    public Discipline(String d){
+        mTitle = d;
+        mId = UUID.randomUUID();
+    }
     public UUID getId() {
         return mId;
     }

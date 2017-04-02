@@ -2,7 +2,7 @@ package com.example.nix.scheduleapp.homeworkdb;
 
 import android.database.Cursor;
 import android.database.CursorWrapper;
-import com.example.nix.scheduleapp.Homework;
+import com.example.nix.scheduleapp.model.Homework;
 import java.util.UUID;
 import static com.example.nix.scheduleapp.homeworkdb.HomeworkDbSchema.*;
 

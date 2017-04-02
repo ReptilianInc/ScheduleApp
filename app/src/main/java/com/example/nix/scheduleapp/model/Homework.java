@@ -1,4 +1,4 @@
-package com.example.nix.scheduleapp;
+package com.example.nix.scheduleapp.model;
 
 import java.util.UUID;
 

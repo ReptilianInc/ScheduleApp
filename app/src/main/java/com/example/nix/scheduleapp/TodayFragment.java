@@ -9,6 +9,9 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.example.nix.scheduleapp.model.Subject;
+
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;

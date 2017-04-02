@@ -10,6 +10,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.example.nix.scheduleapp.model.Subject;
+
 import java.util.List;
 
 /**

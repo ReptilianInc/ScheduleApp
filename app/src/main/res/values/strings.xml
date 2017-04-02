@@ -32,7 +32,6 @@
     <string name="name_of_day_fragment">Выберите день недели:</string>
     <string name="name_of_week_fragment">Выберите тип недели:</string>
     <string name="name_of_time_fragment">Назначьте время:</string>
-
     <string name="title_activity_settings">Настройки</string>
     <string name="clear_all">Удалить все записи</string>
     <string name="set_first_week">Начать отчёт недель с текущей недели</string>
@@ -40,4 +39,5 @@
     <string name="title_set_week">Установить номер недели:</string>
     <string name="title_activity_about">Справка</string>
     <string name="add_discipline_or_hw">Добавить элемент&#8230;</string>
+    <string name="dis_hint">Введите название дисциплины</string>
 </resources>
