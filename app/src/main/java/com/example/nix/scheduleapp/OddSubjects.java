@@ -13,26 +13,7 @@ import java.util.List;
  * Created by Nix on 25.08.2016.
  */
 public class OddSubjects extends ShowSubjectsAbstract {
-    private RecyclerView mRecyclerView;
-    private NewSubjectAdapter mAdapter;
-    public int i;
-    @Override
-    public void onCreate(Bundle savedInstanceState){
-        super.onCreate(savedInstanceState);
-        Bundle bundle = this.getArguments();
-        if(bundle != null){
-            i = bundle.getInt(SubjectsOfDayFragment.DAY, 0);
-        }
-    }
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
-        View v = inflater.inflate(R.layout.content_monday, container, false);
-        mRecyclerView = (RecyclerView) v.findViewById(R.id.recycler_monday);
-        mRecyclerView.addItemDecoration(new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL_LIST));
-        mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        updateUI();
-        return v;
-    }
+
     @Override
     protected void updateUI(){
         ContentLab contentLab = ContentLab.get(getActivity());

@@ -1,7 +1,9 @@
 package com.example.nix.scheduleapp;
 
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.ContextMenu;
 import android.view.LayoutInflater;
@@ -19,6 +21,27 @@ import java.util.List;
  */
 public abstract class ShowSubjectsAbstract extends Fragment{
     protected abstract void updateUI();
+    protected RecyclerView mRecyclerView;
+    protected NewSubjectAdapter mAdapter;
+    public int i;
+    @Override
+    public void onCreate(Bundle savedInstanceState){
+        super.onCreate(savedInstanceState);
+        Bundle bundle = this.getArguments();
+        if(bundle != null){
+            i = bundle.getInt(SubjectsOfDayFragment.DAY, 0);
+        }
+    }
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
+        View v = inflater.inflate(R.layout.content_monday, container, false);
+        mRecyclerView = (RecyclerView) v.findViewById(R.id.recycler_monday);
+        mRecyclerView.addItemDecoration(new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL_LIST));
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        updateUI();
+        return v;
+    }
+
     protected class NewSubjectViewHolder extends RecyclerView.ViewHolder implements View.OnCreateContextMenuListener{
         public TextView mNameTextView;
         public TextView mDateTextView;
@@ -38,7 +61,7 @@ public abstract class ShowSubjectsAbstract extends Fragment{
             mNameTextView.setText(mSubjectExample.getName());
             mTeacherTextView.setText(mSubjectExample.getTeacherName());
             mAudView.setText(mSubjectExample.getAuditory());
-            mDateTextView.setText(mSubjectExample.getStartTime() + "-" + mSubjectExample.getEndTime());
+            //mDateTextView.setText(mSubjectExample.getStartTime() + "-" + mSubjectExample.getEndTime());
         }
         @Override
         public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo){

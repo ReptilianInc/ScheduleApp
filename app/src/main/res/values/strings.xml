@@ -5,6 +5,7 @@
     <string name="teachers_list">Список преподавателей</string>
     <string name="rooms_list">Список аудиторий</string>
     <string name="subjects_title">Дни недели</string>
+    <string name="times_title">Список времён</string>>
     <string name="today">Сегодня</string>
     <string name="monday">Понедельник</string>
     <string name="tuesday">Вторник</string>
@@ -39,5 +40,5 @@
     <string name="title_set_week">Установить номер недели:</string>
     <string name="title_activity_about">Справка</string>
     <string name="add_discipline_or_hw">Добавить элемент&#8230;</string>
-    <string name="dis_hint">Введите название дисциплины</string>
+    <string name="dis_hint">Введите данные</string>
 </resources>

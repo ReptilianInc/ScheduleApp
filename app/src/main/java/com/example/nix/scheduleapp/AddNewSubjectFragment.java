@@ -159,23 +159,23 @@ public class AddNewSubjectFragment extends Fragment {
             return;
         }
         if (requestCode == REQUEST_DATE) {
-            mSubject.setStartHours((int) data.getSerializableExtra(TimePickerFragment.EXTRA_HOUR));
+            /*mSubject.setStartHours((int) data.getSerializableExtra(TimePickerFragment.EXTRA_HOUR));
             mSubject.setStartMinutes((int) data.getSerializableExtra(TimePickerFragment.EXTRA_MINUTE));
-            mStartView.setText(mSubject.getStartTime());
+            mStartView.setText(mSubject.getStartTime());*/
 
 
         }
         if (requestCode == REQUEST_DATE2) {
-            mSubject.setEndHours((int) data.getSerializableExtra(TimePickerFragment2.EXTRA_HOUR));
+            /*mSubject.setEndHours((int) data.getSerializableExtra(TimePickerFragment2.EXTRA_HOUR));
             mSubject.setEndMinutes((int) data.getSerializableExtra(TimePickerFragment2.EXTRA_MINUTE));
-            mEndView.setText(mSubject.getEndTime());
+            mEndView.setText(mSubject.getEndTime());*/
         }
         if(requestCode == REQUEST_DATE3){
             mSubject.setDay((int) data.getSerializableExtra(DayPickerFragment.EXTRA_DAY));
             mDayOfWeekView.setText(mSubject.getDayString());
         }
         if(requestCode == REQUEST_DATE4){
-            mSubject.setWeekType((int) data.getSerializableExtra(WeekPickerFragment.EXTRA_WEEKTYPE));
+            mSubject.setWeekType((boolean) data.getSerializableExtra(WeekPickerFragment.EXTRA_WEEKTYPE));
             mWeekTypeView.setText(mSubject.getWeekString());
         }
     }
@@ -236,8 +236,6 @@ public class AddNewSubjectFragment extends Fragment {
         mAuditView.setText(mSubject.getAuditory());
         mNameView.setText(mSubject.getName());
         mDayOfWeekView.setText(mSubject.getDayString());
-        mStartView.setText(mSubject.getStartTime());
-        mEndView.setText(mSubject.getEndTime());
         mWeekTypeView.setText(mSubject.getWeekString());
     }
 }

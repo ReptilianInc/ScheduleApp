@@ -6,14 +6,10 @@ import java.util.UUID;
  */
 public class Subject {
     private String mName;//
-    private int mStartHours;//
-    private int mStartMinutes;//
-    private int mEndHours;//
-    private int mEndMinutes;//
     private int mDay;//
     private String mTeacherName;//
     private String mAuditory;//
-    private int mWeekType;//
+    private boolean mWeekType;//
     private UUID mId;
     public Subject(){
         this(UUID.randomUUID());
@@ -25,41 +21,9 @@ public class Subject {
         mName = subjectParent.getName();
         mTeacherName = subjectParent.getTeacherName();
         mAuditory = subjectParent.getAuditory();
-        mStartHours = subjectParent.getStartHours();
-        mEndHours = subjectParent.getEndHours();
-        mStartMinutes = subjectParent.getStartMinutes();
-        mEndMinutes = subjectParent.getEndMinutes();
         mDay = subjectParent.getDay();
         mWeekType = subjectParent.isWeekType();
         mId = UUID.randomUUID();
-    }
-    public String getStartTime(){
-        String str = "";
-        if (mStartMinutes <= 9){
-            str = mStartHours + ":" + "0" + mStartMinutes;
-        }
-
-        if (mStartMinutes > 9){
-            str = mStartHours + ":" + mStartMinutes;
-        }
-        if (mStartHours == 0 && mStartMinutes == 0){
-            str = "Коснитесь, чтобы назначить";
-        }
-        return str;
-    }
-    public String getEndTime(){
-        String str = "";
-        if (mEndMinutes <= 9){
-            str = mEndHours + ":" + "0" + mEndMinutes;
-        }
-
-        if (mEndMinutes > 9){
-            str = mEndHours + ":" + mEndMinutes;
-        }
-        if (mEndHours == 0 && mEndMinutes == 0){
-            str = "Коснитесь, чтобы назначить";
-        }
-        return str;
     }
     public String getDayString(){
         String str;
@@ -89,10 +53,10 @@ public class Subject {
     }
     public String getWeekString(){
         String str = "Коснитесь, чтобы назначить";
-        if (mWeekType == 1){
+        if (mWeekType){
             str = "Чётная";
         }
-        if (mWeekType == 2){
+        if (!mWeekType){
             str = "Нечётная";
         }
         return str;
@@ -122,14 +86,13 @@ public class Subject {
         mAuditory = auditory;
     }
 
-    public int isWeekType() {
+    public boolean isWeekType() {
         return mWeekType;
     }
 
-    public void setWeekType(int weekType) {
+    public void setWeekType(boolean weekType) {
         mWeekType = weekType;
     }
-
     public UUID getId() {
         return mId;
     }
@@ -140,37 +103,5 @@ public class Subject {
 
     public void setDay(int day) {
         mDay = day;
-    }
-
-    public int getStartHours() {
-        return mStartHours;
-    }
-
-    public void setStartHours(int start) {
-        mStartHours = start;
-    }
-
-    public int getStartMinutes() {
-        return mStartMinutes;
-    }
-
-    public void setStartMinutes(int startMinutes) {
-        mStartMinutes = startMinutes;
-    }
-
-    public int getEndMinutes() {
-        return mEndMinutes;
-    }
-
-    public void setEndMinutes(int endMinutes) {
-        mEndMinutes = endMinutes;
-    }
-
-    public int getEndHours() {
-        return mEndHours;
-    }
-
-    public void setEndHours(int endHours) {
-        mEndHours = endHours;
     }
 }

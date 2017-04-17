@@ -161,7 +161,7 @@ public class MainActivity extends AppCompatActivity {
                                 mToolbar.setTitle("Список дисциплин");
                                 mToolbar.setSubtitle("");
                                 mFab.setVisibility(FloatingActionButton.INVISIBLE);
-                                fragment = new DisciplineFragment();
+                                fragment = new EntityFragment();
                                 fm.beginTransaction()
                                         .add(R.id.content_fragment, fragment)
                                         .commit();
