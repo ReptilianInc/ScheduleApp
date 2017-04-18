@@ -28,7 +28,6 @@ public class MainActivity extends AppCompatActivity {
     private FloatingActionButton mFab;
     private Fragment fragment;
     public final static String DATA = "DAY_OF_WEEK";
-    private int day;
     private Bundle bundle;
     private SharedPreferences mSharedPreferences;
     private boolean VISIBLE_BUTTON = false;
@@ -65,106 +64,34 @@ public class MainActivity extends AppCompatActivity {
                     public void run() {
                         switch (item.getItemId()){
                             case R.id.mon:
-                                fm.beginTransaction()
-                                        .remove(fragment)
-                                        .commit();
-                                mToolbar.setTitle("Понедельник");
-                                mFab.setVisibility(FloatingActionButton.VISIBLE);
-                                mToolbar.setSubtitle("");
-                                day = 2;
-                                bundle.putInt(DATA, day);
-                                fragment = new SubjectsOfDayFragment();
-                                fragment.setArguments(bundle);
-                                fm.beginTransaction()
-                                        .add(R.id.content_fragment, fragment)
-                                        .commit();
+                                setDayFragment("Понедельник", 2);
                                 break;
                             case R.id.tue:
-                                fm.beginTransaction()
-                                        .remove(fragment)
-                                        .commit();
-                                mToolbar.setTitle("Вторник");
-                                mToolbar.setSubtitle("");
-                                mFab.setVisibility(FloatingActionButton.VISIBLE);
-                                day = 3;
-                                bundle.putInt(DATA, day);
-                                fragment = new SubjectsOfDayFragment();
-                                fragment.setArguments(bundle);
-                                fm.beginTransaction()
-                                        .add(R.id.content_fragment, fragment)
-                                        .commit();
+                                setDayFragment("Вторник", 3);
                                 break;
                             case R.id.wed:
-                                fm.beginTransaction()
-                                        .remove(fragment)
-                                        .commit();
-                                mToolbar.setTitle("Среда");
-                                mToolbar.setSubtitle("");
-                                mFab.setVisibility(FloatingActionButton.VISIBLE);
-                                day = 4;
-                                bundle.putInt(DATA, day);
-                                fragment = new SubjectsOfDayFragment();
-                                fragment.setArguments(bundle);
-                                fm.beginTransaction()
-                                        .add(R.id.content_fragment, fragment)
-                                        .commit();
+                                setDayFragment("Среда", 4);
                                 break;
                             case R.id.thu:
-                                fm.beginTransaction()
-                                        .remove(fragment)
-                                        .commit();
-                                mToolbar.setTitle("Четверг");
-                                mToolbar.setSubtitle("");
-                                mFab.setVisibility(FloatingActionButton.VISIBLE);
-                                day = 5;
-                                bundle.putInt(DATA, day);
-                                fragment = new SubjectsOfDayFragment();
-                                fragment.setArguments(bundle);
-                                fm.beginTransaction()
-                                        .add(R.id.content_fragment, fragment)
-                                        .commit();
+                                setDayFragment("Четверг", 5);
                                 break;
                             case R.id.fri:
-                                fm.beginTransaction()
-                                        .remove(fragment)
-                                        .commit();
-                                mToolbar.setTitle("Пятница");
-                                mToolbar.setSubtitle("");
-                                mFab.setVisibility(FloatingActionButton.VISIBLE);
-                                day = 6;
-                                bundle.putInt(DATA, day);
-                                fragment = new SubjectsOfDayFragment();
-                                fragment.setArguments(bundle);
-                                fm.beginTransaction()
-                                        .add(R.id.content_fragment, fragment)
-                                        .commit();
+                                setDayFragment("Пятница", 6);
                                 break;
                             case R.id.sat:
-                                fm.beginTransaction()
-                                        .remove(fragment)
-                                        .commit();
-                                mToolbar.setTitle("Суббота");
-                                mToolbar.setSubtitle("");
-                                mFab.setVisibility(FloatingActionButton.VISIBLE);
-                                day = 7;
-                                bundle.putInt(DATA, day);
-                                fragment = new SubjectsOfDayFragment();
-                                fragment.setArguments(bundle);
-                                fm.beginTransaction()
-                                        .add(R.id.content_fragment, fragment)
-                                        .commit();
+                                setDayFragment("Суббота", 7);
                                 break;
                             case R.id.hw:
-                                fm.beginTransaction()
-                                        .remove(fragment)
-                                        .commit();
-                                mToolbar.setTitle("Список дисциплин");
-                                mToolbar.setSubtitle("");
-                                mFab.setVisibility(FloatingActionButton.INVISIBLE);
-                                fragment = new EntityFragment();
-                                fm.beginTransaction()
-                                        .add(R.id.content_fragment, fragment)
-                                        .commit();
+                                setEntityFragment("Список дисциплин", EntityFragment.DISCIPLINE_CODE);
+                                break;
+                            case R.id.teach:
+                                setEntityFragment("Список преподавателей", EntityFragment.TEACHER_CODE);
+                                break;
+                            case R.id.ex:
+                                setEntityFragment("Список аудиторий", EntityFragment.AUDITORY_CODE);
+                                break;
+                            case R.id.tms:
+                                setEntityFragment("Список времён", EntityFragment.TIMES_CODE);
                                 break;
                         }
                     }
@@ -200,6 +127,7 @@ public class MainActivity extends AppCompatActivity {
                         .remove(fragment)
                         .commit();
                 mToolbar.setTitle("Сегодня");
+                setWeek();
                 fragment = new TodayFragment();
                 fm.beginTransaction()
                         .add(R.id.content_fragment, fragment)
@@ -231,5 +159,31 @@ public class MainActivity extends AppCompatActivity {
                 mToolbar.setSubtitle(check_week + " неделя");
             }
         }
+    }
+    private void setDayFragment(String title, int day_code){
+        mFab.setVisibility(FloatingActionButton.VISIBLE);
+        fm.beginTransaction()
+                .remove(fragment)
+                .commit();
+        mToolbar.setTitle(title);
+        mToolbar.setSubtitle("");
+        bundle.putInt(DATA, day_code);
+        fragment = new SubjectsOfDayFragment();
+        fragment.setArguments(bundle);
+        fm.beginTransaction()
+                .add(R.id.content_fragment, fragment)
+                .commit();
+    }
+    private void setEntityFragment(String title, int entity_code){
+        mFab.setVisibility(FloatingActionButton.INVISIBLE);
+        fm.beginTransaction()
+                .remove(fragment)
+                .commit();
+        mToolbar.setTitle(title);
+        mToolbar.setSubtitle("");
+        fragment = EntityFragment.newInstance(entity_code);
+        fm.beginTransaction()
+                .add(R.id.content_fragment, fragment)
+                .commit();
     }
 }

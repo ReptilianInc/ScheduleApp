@@ -26,10 +26,22 @@ public class EntityFragment extends Fragment {
     private RecyclerView mRecyclerView;
     private NewAdapter mAdapter;
     private Button mAddButton;
+    private int result;
     private static final int REQUEST_CODE = 0;
+    private static final String APP_FRAGMENT_ID = "fragment_id";
+    public static final int DISCIPLINE_CODE = 0, TEACHER_CODE = 1, AUDITORY_CODE = 2, TIMES_CODE = 3;
+    public static EntityFragment newInstance(int fragment_type){
+        Bundle args = new Bundle();
+        args.putSerializable(APP_FRAGMENT_ID, fragment_type);
+        EntityFragment fragment = new EntityFragment();
+        fragment.setArguments(args);
+        return fragment;
+    }
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        result = (int)getArguments().getSerializable(APP_FRAGMENT_ID);
     }
 
     @Nullable
@@ -49,8 +61,22 @@ public class EntityFragment extends Fragment {
             @Override
             public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction) {
                 ContentLab contentLab = ContentLab.get(getContext());
-                contentLab.deleteDiscipline(mAdapter.mEntities.get(viewHolder.getAdapterPosition()));
-                updateUI();
+                switch (result){
+                    case EntityFragment.DISCIPLINE_CODE:
+                        contentLab.deleteDiscipline(mAdapter.mEntities.get(viewHolder.getAdapterPosition()));
+                        break;
+                    case EntityFragment.TEACHER_CODE:
+                        contentLab.deleteTeacher(mAdapter.mEntities.get(viewHolder.getAdapterPosition()));
+                        break;
+                    case EntityFragment.AUDITORY_CODE:
+                        contentLab.deleteAuditory(mAdapter.mEntities.get(viewHolder.getAdapterPosition()));
+                        break;
+                    case EntityFragment.TIMES_CODE:
+                        contentLab.deleteTimes(mAdapter.mEntities.get(viewHolder.getAdapterPosition()));
+                        break;
+                }
+
+                updateUI(result);
             }
         };
         ItemTouchHelper itemTouchHelper = new ItemTouchHelper(simpleCallback);
@@ -63,7 +89,7 @@ public class EntityFragment extends Fragment {
                 add.show(getFragmentManager(), "kek");
             }
         });
-        updateUI();
+        updateUI(result);
         return v;
     }
     private class NewViewHolder extends RecyclerView.ViewHolder{
@@ -78,9 +104,21 @@ public class EntityFragment extends Fragment {
         public void bindSubject(Entity entity){
             mExample = entity;
             mDis.setText(mExample.getName());
-            mImageView.setImageResource(R.drawable.ic_disc);
+            switch (result){
+                case EntityFragment.DISCIPLINE_CODE:
+                    mImageView.setImageResource(R.drawable.ic_disc);
+                    break;
+                case EntityFragment.TEACHER_CODE:
+                    mImageView.setImageResource(R.drawable.ic_teacher);
+                    break;
+                case EntityFragment.AUDITORY_CODE:
+                    mImageView.setImageResource(R.drawable.ic_room);
+                    break;
+                case EntityFragment.TIMES_CODE:
+                    mImageView.setImageResource(R.drawable.ic_times);
+                    break;
+            }
         }
-
     }
     protected class NewAdapter extends RecyclerView.Adapter<NewViewHolder>{
         private List<Entity> mEntities;
@@ -101,11 +139,28 @@ public class EntityFragment extends Fragment {
 
         }
     }
-    private void updateUI(){
+    private void updateUI(int entity_code){
         ContentLab contentLab = ContentLab.get(getContext());
-        List<Entity> disciplines;
-        disciplines = contentLab.getDisciplines();
-        mAdapter = new NewAdapter(disciplines);
+        List<Entity> entities;
+        switch (entity_code){
+            case EntityFragment.DISCIPLINE_CODE:
+                entities = contentLab.getDisciplines();
+                break;
+            case EntityFragment.TEACHER_CODE:
+                entities = contentLab.getTeachers();
+                break;
+            case EntityFragment.AUDITORY_CODE:
+                entities = contentLab.getAuditory();
+                break;
+            case EntityFragment.TIMES_CODE:
+                entities = contentLab.getTimes();
+                break;
+            default:
+                entities = contentLab.getDisciplines();
+                break;
+        }
+
+        mAdapter = new NewAdapter(entities);
         mRecyclerView.setAdapter(mAdapter);
     }
 
@@ -117,8 +172,22 @@ public class EntityFragment extends Fragment {
         if (requestCode == REQUEST_CODE) {
             String s = (String) data.getSerializableExtra(AddDisciplineDialog.EXTRA_TEXT);
             ContentLab contentLab = ContentLab.get(getContext());
-            contentLab.addDiscipline(new Entity(s));
-            updateUI();
+
+            switch (result) {
+                case EntityFragment.DISCIPLINE_CODE:
+                    contentLab.addDiscipline(new Entity(s));
+                    break;
+                case EntityFragment.TEACHER_CODE:
+                    contentLab.addTeacher(new Entity(s));
+                    break;
+                case EntityFragment.AUDITORY_CODE:
+                    contentLab.addAuditory(new Entity(s));
+                    break;
+                case EntityFragment.TIMES_CODE:
+                    contentLab.addTimes(new Entity(s));
+                    break;
+            }
+            updateUI(result);
         }
     }
 }
