@@ -84,7 +84,7 @@ public class EntityFragment extends Fragment {
         mAddButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                AddDisciplineDialog add = new AddDisciplineDialog();
+                AddEntityDialog add = new AddEntityDialog();
                 add.setTargetFragment(EntityFragment.this, REQUEST_CODE);
                 add.show(getFragmentManager(), "kek");
             }
@@ -170,7 +170,7 @@ public class EntityFragment extends Fragment {
             return;
         }
         if (requestCode == REQUEST_CODE) {
-            String s = (String) data.getSerializableExtra(AddDisciplineDialog.EXTRA_TEXT);
+            String s = (String) data.getSerializableExtra(AddEntityDialog.EXTRA_TEXT);
             ContentLab contentLab = ContentLab.get(getContext());
 
             switch (result) {

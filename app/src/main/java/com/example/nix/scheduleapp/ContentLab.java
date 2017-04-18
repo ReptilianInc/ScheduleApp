@@ -174,9 +174,9 @@ public class ContentLab {
         values.put(SubjectTable.Cols.UUID, subject.getId().toString());
         values.put(SubjectTable.Cols.TITLE, subject.getName());
         values.put(SubjectTable.Cols.DAY, subject.getDay());
-        values.put(SubjectTable.Cols.TEACHERNAME, subject.getTeacherName());
-        values.put(SubjectTable.Cols.AUDITORY, subject.getAuditory());
-        values.put(SubjectTable.Cols.WEEKTYPE, subject.isWeekType());
+        //values.put(SubjectTable.Cols.TEACHERNAME, subject.getTeacherName());
+        //values.put(SubjectTable.Cols.AUDITORY, subject.getAuditory());
+        //values.put(SubjectTable.Cols.WEEKTYPE, subject.isWeekType());
         return values;
     }
 

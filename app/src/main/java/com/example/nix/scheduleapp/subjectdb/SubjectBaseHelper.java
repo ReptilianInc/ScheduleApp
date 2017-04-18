@@ -21,13 +21,10 @@ public class SubjectBaseHelper extends SQLiteOpenHelper {
         " _id integer primary key autoincrement, " +
         SubjectTable.Cols.UUID + ", " +
         SubjectTable.Cols.TITLE + ", " +
-        SubjectTable.Cols.STARTHOURS + ", " +
-        SubjectTable.Cols.STARTMINUTES + ", " +
-        SubjectTable.Cols.ENDHOURS + ", " +
-        SubjectTable.Cols.ENDMINUTES + ", " +
         SubjectTable.Cols.DAY + ", " +
-        SubjectTable.Cols.TEACHERNAME + ", " +
-        SubjectTable.Cols.AUDITORY + ", " +
+        SubjectTable.Cols.TEACHER_UUID + ", " +
+        SubjectTable.Cols.AUDITORY_UUID + ", " +
+        SubjectTable.Cols.TIMES_UUID + ", " +
         SubjectTable.Cols.WEEKTYPE +
         ")"
         );

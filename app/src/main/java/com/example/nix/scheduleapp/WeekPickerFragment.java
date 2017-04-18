@@ -10,6 +10,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.example.nix.scheduleapp.model.Subject;
+
 /**
  * Created by Nix on 27.08.2016.
  */
@@ -24,14 +26,14 @@ public class WeekPickerFragment extends DialogFragment{
         mEven.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                sendResult(Activity.RESULT_OK, 1);
+                sendResult(Activity.RESULT_OK, Subject.WEEK_TYPE_EVEN);
                 getDialog().dismiss();
             }
         });
         mOdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                sendResult(Activity.RESULT_OK, 2);
+                sendResult(Activity.RESULT_OK, Subject.WEEK_TYPE_ODD);
                 getDialog().dismiss();
             }
         });

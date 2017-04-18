@@ -3,34 +3,28 @@ package com.example.nix.scheduleapp;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.example.nix.scheduleapp.model.Subject;
-
 import java.util.UUID;
 
 /**
  * Created by Nix on 27.08.2016.
  */
-public class AddNewSubjectFragment extends Fragment {
-    private EditText mTeacherView, mAuditView, mNameView;
-    private TextView mStartView, mEndView, mDayOfWeekView, mWeekTypeView;
-    private static final int REQUEST_DATE = 0;
-    private static final int REQUEST_DATE2 = 1;
-    private static final String DIALOG_DAY = "DialogDay";
-    private static final String DIALOG_DAY2 = "DialogDay2";
+public class AddNewSubjectFragment extends Fragment implements View.OnClickListener{
+    private TextView mTeacherView, mAuditView, mNameView;
+    private TextView mDayOfWeekView, mWeekTypeView;
+    private RelativeLayout mTitle, mTeacher, mAuditory, mTime, mDay, mWeek;
     private static final int REQUEST_DATE3 = 2;
     private static final int REQUEST_DATE4 = 3;
     private static final String DIALOG_DAY3 = "DialogDay3";
@@ -58,98 +52,24 @@ public class AddNewSubjectFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_add_new_subject, container, false);
-        mTeacherView = (EditText) v.findViewById(R.id.teacher_name_redact);
-        mAuditView = (EditText) v.findViewById(R.id.audit_redact);
-        mNameView = (EditText) v.findViewById(R.id.name_redact);
-        mStartView = (TextView) v.findViewById(R.id.start_text);
+        mTitle = (RelativeLayout)v.findViewById(R.id.rel1);
+        mTeacher = (RelativeLayout)v.findViewById(R.id.rel2);
+        mAuditory = (RelativeLayout)v.findViewById(R.id.rel3);
+        mTime = (RelativeLayout)v.findViewById(R.id.rel4);
+        mDay = (RelativeLayout)v.findViewById(R.id.rel5);
+        mWeek = (RelativeLayout)v.findViewById(R.id.rel6);
+        mTeacherView = (TextView) v.findViewById(R.id.teacher_name_redact);
+        mAuditView = (TextView) v.findViewById(R.id.audit_redact);
+        mNameView = (TextView) v.findViewById(R.id.name_redact);
         mDayOfWeekView = (TextView) v.findViewById(R.id.day_week);
-        mEndView = (TextView) v.findViewById(R.id.end_text);
         mWeekTypeView = (TextView) v.findViewById(R.id.week_type);
         initText();
-        mDayOfWeekView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                FragmentManager manager = getFragmentManager();
-                DayPickerFragment dialog = new DayPickerFragment();
-                dialog.setTargetFragment(AddNewSubjectFragment.this, REQUEST_DATE3);
-                dialog.show(manager, DIALOG_DAY3);
-            }
-        });
-        mWeekTypeView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                FragmentManager manager = getFragmentManager();
-                WeekPickerFragment dialog = new WeekPickerFragment();
-                dialog.setTargetFragment(AddNewSubjectFragment.this, REQUEST_DATE4);
-                dialog.show(manager, DIALOG_DAY4);
-            }
-        });
-        mStartView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                FragmentManager manager = getFragmentManager();
-                TimePickerFragment dialog = new TimePickerFragment();
-                dialog.setTargetFragment(AddNewSubjectFragment.this, REQUEST_DATE);
-                dialog.show(manager, DIALOG_DAY);
-            }
-        });
-        mEndView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                FragmentManager manager = getFragmentManager();
-                TimePickerFragment2 dialog = new TimePickerFragment2();
-                dialog.setTargetFragment(AddNewSubjectFragment.this, REQUEST_DATE2);
-                dialog.show(manager, DIALOG_DAY2);
-            }
-        });
-        mTeacherView.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                mSubject.setTeacherName(s.toString());
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-
-            }
-        });
-        mNameView.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                mSubject.setName(s.toString());
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-
-            }
-        });
-        mAuditView.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                mSubject.setAuditory(s.toString());
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-
-            }
-        });
+        mTitle.setOnClickListener(this);
+        mTeacher.setOnClickListener(this);
+        mAuditory.setOnClickListener(this);
+        mTime.setOnClickListener(this);
+        mDay.setOnClickListener(this);
+        mWeek.setOnClickListener(this);
         return v;
     }
     @Override
@@ -158,24 +78,12 @@ public class AddNewSubjectFragment extends Fragment {
         {
             return;
         }
-        if (requestCode == REQUEST_DATE) {
-            /*mSubject.setStartHours((int) data.getSerializableExtra(TimePickerFragment.EXTRA_HOUR));
-            mSubject.setStartMinutes((int) data.getSerializableExtra(TimePickerFragment.EXTRA_MINUTE));
-            mStartView.setText(mSubject.getStartTime());*/
-
-
-        }
-        if (requestCode == REQUEST_DATE2) {
-            /*mSubject.setEndHours((int) data.getSerializableExtra(TimePickerFragment2.EXTRA_HOUR));
-            mSubject.setEndMinutes((int) data.getSerializableExtra(TimePickerFragment2.EXTRA_MINUTE));
-            mEndView.setText(mSubject.getEndTime());*/
-        }
         if(requestCode == REQUEST_DATE3){
             mSubject.setDay((int) data.getSerializableExtra(DayPickerFragment.EXTRA_DAY));
             mDayOfWeekView.setText(mSubject.getDayString());
         }
         if(requestCode == REQUEST_DATE4){
-            mSubject.setWeekType((boolean) data.getSerializableExtra(WeekPickerFragment.EXTRA_WEEKTYPE));
+            mSubject.setWeekType((int) data.getSerializableExtra(WeekPickerFragment.EXTRA_WEEKTYPE));
             mWeekTypeView.setText(mSubject.getWeekString());
         }
     }
@@ -192,8 +100,7 @@ public class AddNewSubjectFragment extends Fragment {
                 switch (copy){
                     case 0:
                         if (mSubject.getName() == null || mDayOfWeekView.getText() == "Коснитесь, чтобы назначить" ||
-                                mWeekTypeView.getText() == "Коснитесь, чтобы назначить" || mStartView.getText() == "Коснитесь, чтобы назначить" ||
-                                mEndView.getText() == "Коснитесь, чтобы назначить"){
+                                mWeekTypeView.getText() == "Коснитесь, чтобы назначить"){
                             Toast.makeText(getContext(), "Данные заполнены некорректно", Toast.LENGTH_SHORT).show();
                         }else {
                             Toast.makeText(getActivity(), "Запись сохранена", Toast.LENGTH_SHORT).show();
@@ -204,8 +111,7 @@ public class AddNewSubjectFragment extends Fragment {
                         break;
                     case 1:
                         if (mSubject.getName() == null || mDayOfWeekView.getText() == "Коснитесь, чтобы назначить" ||
-                                mWeekTypeView.getText() == "Коснитесь, чтобы назначить" || mStartView.getText() == "Коснитесь, чтобы назначить" ||
-                                mEndView.getText() == "Коснитесь, чтобы назначить"){
+                                mWeekTypeView.getText() == "Коснитесь, чтобы назначить"){
                             Toast.makeText(getContext(), "Данные заполнены некорректно", Toast.LENGTH_SHORT).show();
                         }else {
                             Toast.makeText(getActivity(), "Запись отредактирована", Toast.LENGTH_SHORT).show();
@@ -215,8 +121,7 @@ public class AddNewSubjectFragment extends Fragment {
                         break;
                     case 2:
                         if (mSubject.getName() == null || mDayOfWeekView.getText() == "Коснитесь, чтобы назначить" ||
-                                mWeekTypeView.getText() == "Коснитесь, чтобы назначить" || mStartView.getText() == "Коснитесь, чтобы назначить" ||
-                                mEndView.getText() == "Коснитесь, чтобы назначить"){
+                                mWeekTypeView.getText() == "Коснитесь, чтобы назначить"){
                             Toast.makeText(getContext(), "Данные заполнены некорректно", Toast.LENGTH_SHORT).show();
                         }else {
                             Toast.makeText(getActivity(), "Запись скопирована", Toast.LENGTH_SHORT).show();
@@ -232,10 +137,44 @@ public class AddNewSubjectFragment extends Fragment {
         }
     }
     private void initText(){
-        mTeacherView.setText(mSubject.getTeacherName());
+        /*mTeacherView.setText(mSubject.getTeacherName());
         mAuditView.setText(mSubject.getAuditory());
-        mNameView.setText(mSubject.getName());
         mDayOfWeekView.setText(mSubject.getDayString());
-        mWeekTypeView.setText(mSubject.getWeekString());
+        mWeekTypeView.setText(mSubject.getWeekString());*/
+    }
+
+    @Override
+    public void onClick(View v) {
+        FragmentManager manager = getFragmentManager();
+        DialogFragment dialog;
+        Intent intent;
+        switch (v.getId()){
+            case R.id.rel1:
+                intent = PickEntityActivity.newIntent(getContext(), EntityFragment.DISCIPLINE_CODE);
+                startActivity(intent);
+                break;
+            case R.id.rel2:
+                intent = PickEntityActivity.newIntent(getContext(), EntityFragment.TEACHER_CODE);
+                startActivity(intent);
+                break;
+            case R.id.rel3:
+                intent = PickEntityActivity.newIntent(getContext(), EntityFragment.AUDITORY_CODE);
+                startActivity(intent);
+                break;
+            case R.id.rel4:
+                intent = PickEntityActivity.newIntent(getContext(), EntityFragment.TIMES_CODE);
+                startActivity(intent);
+                break;
+            case R.id.rel5:
+                dialog = new DayPickerFragment();
+                dialog.setTargetFragment(AddNewSubjectFragment.this, REQUEST_DATE3);
+                dialog.show(manager, DIALOG_DAY3);
+                break;
+            case R.id.rel6:
+                dialog = new WeekPickerFragment();
+                dialog.setTargetFragment(AddNewSubjectFragment.this, REQUEST_DATE4);
+                dialog.show(manager, DIALOG_DAY4);
+                break;
+        }
     }
 }

@@ -9,7 +9,10 @@ public class Subject {
     private int mDay;//
     private String mTeacherName;//
     private String mAuditory;//
-    private boolean mWeekType;//
+    private String mTimes;
+    private int mWeekType;//
+    public static final int WEEK_TYPE_ODD = 1;
+    public static final int WEEK_TYPE_EVEN = 2;
     private UUID mId;
     public Subject(){
         this(UUID.randomUUID());
@@ -22,7 +25,7 @@ public class Subject {
         mTeacherName = subjectParent.getTeacherName();
         mAuditory = subjectParent.getAuditory();
         mDay = subjectParent.getDay();
-        mWeekType = subjectParent.isWeekType();
+        mWeekType = subjectParent.getWeekType();
         mId = UUID.randomUUID();
     }
     public String getDayString(){
@@ -53,10 +56,10 @@ public class Subject {
     }
     public String getWeekString(){
         String str = "Коснитесь, чтобы назначить";
-        if (mWeekType){
+        if (mWeekType == WEEK_TYPE_EVEN){
             str = "Чётная";
         }
-        if (!mWeekType){
+        if (mWeekType == WEEK_TYPE_ODD){
             str = "Нечётная";
         }
         return str;
@@ -86,11 +89,11 @@ public class Subject {
         mAuditory = auditory;
     }
 
-    public boolean isWeekType() {
+    public int getWeekType() {
         return mWeekType;
     }
 
-    public void setWeekType(boolean weekType) {
+    public void setWeekType(int weekType) {
         mWeekType = weekType;
     }
     public UUID getId() {
@@ -103,5 +106,13 @@ public class Subject {
 
     public void setDay(int day) {
         mDay = day;
+    }
+
+    public String getTimes() {
+        return mTimes;
+    }
+
+    public void setTimes(String times) {
+        mTimes = times;
     }
 }

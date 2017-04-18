@@ -33,6 +33,11 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.nix.scheduleapp.MainActivity"/>
         </activity>
+        <activity android:name=".PickEntityActivity"
+            android:label="@string/choose_entity"
+            android:parentActivityName=".AddNewSubjectActivity"
+            android:theme="@style/AppTheme">
+        </activity>
     </application>
 
 </manifest>

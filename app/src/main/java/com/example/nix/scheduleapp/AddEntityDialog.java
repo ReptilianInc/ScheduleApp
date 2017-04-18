@@ -17,24 +17,24 @@ import android.widget.Toast;
  * Created by Nix on 02.04.2017.
  */
 
-public class AddDisciplineDialog extends DialogFragment {
+public class AddEntityDialog extends DialogFragment {
     public static final String EXTRA_TEXT = "com.example.nix.scheduleapp.kek";
     private EditText mEditText;
     @NonNull
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
-        View v = LayoutInflater.from(getContext()).inflate(R.layout.add_dsicipline_layout, null);
+        View v = LayoutInflater.from(getContext()).inflate(R.layout.add_entity_layout, null);
         mEditText = (EditText) v.findViewById(R.id.set_discipline);
         return new AlertDialog.Builder(getActivity())
                 .setView(v)
-                .setTitle("Новая дисциплина")
+                .setTitle("Новая запись")
                 .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         if (mEditText.getText().toString().length() > 0){
                             sendResult(Activity.RESULT_OK, mEditText.getText().toString());
                         }else {
-                            Toast.makeText(getContext(), "Введите название", Toast.LENGTH_LONG).show();
+                            Toast.makeText(getContext(), "Введите данные", Toast.LENGTH_LONG).show();
                         }
                     }
                 })
