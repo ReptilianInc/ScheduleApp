@@ -33,6 +33,6 @@ public class PickEntityActivity extends AppCompatActivity {
     }
     private Fragment createFragment(){
         int entity_code = (int)getIntent().getSerializableExtra(EXTRA_ENTITY_ID);
-        return EntityFragment.newInstance(entity_code);
+        return EntityFragment.newInstance(entity_code, true);
     }
 }

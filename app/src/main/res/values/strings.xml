@@ -39,5 +39,5 @@
     <string name="title_activity_about">Справка</string>
     <string name="add_discipline_or_hw">Добавить элемент&#8230;</string>
     <string name="choose_entity">Выбор элемента</string>
-    <string name="dis_hint">Введите данные</string>
+    <string name="dis_hint">Пишите здесь</string>
 </resources>

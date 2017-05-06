@@ -181,7 +181,7 @@ public class MainActivity extends AppCompatActivity {
                 .commit();
         mToolbar.setTitle(title);
         mToolbar.setSubtitle("");
-        fragment = EntityFragment.newInstance(entity_code);
+        fragment = EntityFragment.newInstance(entity_code, false);
         fm.beginTransaction()
                 .add(R.id.content_fragment, fragment)
                 .commit();
