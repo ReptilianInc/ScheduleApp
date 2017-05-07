@@ -9,7 +9,6 @@ import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,7 +18,6 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import com.example.nix.scheduleapp.model.Entity;
 import java.util.List;
-import java.util.UUID;
 
 
 /**
@@ -31,6 +29,7 @@ public class EntityFragment extends Fragment{
     private RecyclerView mRecyclerView;
     private NewAdapter mAdapter;
     private Button mAddButton;
+    private TextView mEmptyTextView;
     private int result;
     private boolean action_code;
     private static final int REQUEST_CODE = 0;
@@ -58,6 +57,7 @@ public class EntityFragment extends Fragment{
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.entity_fragment_layout, container, false);
         mRecyclerView = (RecyclerView) v.findViewById(R.id.dis_rec);
+        mEmptyTextView = (TextView)v.findViewById(R.id.no_entitis);
         mAddButton = (Button)v.findViewById(R.id.button_add_dc);
         mRecyclerView.addItemDecoration(new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL_LIST));
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
@@ -104,7 +104,6 @@ public class EntityFragment extends Fragment{
                 });
             }
         });
-        //updateUI(result);
         return v;
     }
     private class NewViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
@@ -141,15 +140,11 @@ public class EntityFragment extends Fragment{
         @Override
         public void onClick(View v) {
             if (action_code){
-                //sendResult(Activity.RESULT_OK, mExample.getId());
                 Intent intent = new Intent();
                 intent.putExtra(EXTRA_TEXT, mExample.getId());
                 getActivity().setResult(Activity.RESULT_OK, intent);
                 getActivity().finish();
             }else{
-                /*AddEntityDialog add = new AddEntityDialog();
-                add.setTargetFragment(EntityFragment.this, REQUEST_CODE);
-                add.show(getFragmentManager(), "kek");*/
                 AddEntityDialog dialog = AddEntityDialog.newInstance(mExample.getId(), result);
                 dialog.setTargetFragment(EntityFragment.this, REQUEST_CODE);
                 dialog.show(getFragmentManager(), "kek");
@@ -205,6 +200,11 @@ public class EntityFragment extends Fragment{
                 entities = contentLab.getDisciplines();
                 break;
         }
+        if(entities.isEmpty()){
+            mEmptyTextView.setVisibility(TextView.VISIBLE);
+        }else {
+            mEmptyTextView.setVisibility(View.INVISIBLE);
+        }
         if (mAdapter == null) {
             mAdapter = new NewAdapter(entities);
             mRecyclerView.setAdapter(mAdapter);
@@ -215,48 +215,8 @@ public class EntityFragment extends Fragment{
     }
 
     @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        /*if (resultCode != Activity.RESULT_OK) {
-            return;
-        }
-        if (requestCode == REQUEST_CODE) {
-            String s = (String) data.getSerializableExtra(AddEntityDialog.EXTRA_TEXT);
-            ContentLab contentLab = ContentLab.get(getContext());
-
-            switch (result) {
-                case EntityFragment.DISCIPLINE_CODE:
-                    contentLab.addDiscipline(new Entity(s));
-                    break;
-                case EntityFragment.TEACHER_CODE:
-                    contentLab.addTeacher(new Entity(s));
-                    break;
-                case EntityFragment.AUDITORY_CODE:
-                    contentLab.addAuditory(new Entity(s));
-                    break;
-                case EntityFragment.TIMES_CODE:
-                    contentLab.addTimes(new Entity(s));
-                    break;
-            }
-
-       }*/
-    }
-
-    @Override
     public void onResume() {
         super.onResume();
         updateUI(result);
-        Log.d("onResume", "after dismiss");
     }
-    /*private void sendResult(int resultCode, UUID id){
-        if (getTargetFragment() == null)
-        {
-            return;
-        }
-        Intent intent = new Intent();
-        intent.putExtra(EXTRA_TEXT, id);
-        getTargetFragment().onActivityResult(getTargetRequestCode(), resultCode, intent);
-    }*/
-    /*public void returnResult(){
-        getActivity().setResult(Activity.RESULT_OK, null);
-    }*/
 }

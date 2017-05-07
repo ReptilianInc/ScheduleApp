@@ -58,10 +58,32 @@ public abstract class ShowSubjectsAbstract extends Fragment{
         }
         public void bindSubject(Subject subject){
             mSubjectExample = subject;
-            mNameTextView.setText(ContentLab.get(getContext()).getDiscipline(subject.getDisciplineId()).getName());
-            mTeacherTextView.setText(ContentLab.get(getContext()).getTeacher(subject.getTeacherId()).getName());
-            mAudView.setText(ContentLab.get(getContext()).getAuditory(subject.getAuditoryId()).getName());
-            mDateTextView.setText(ContentLab.get(getContext()).getTimes(subject.getTimesId()).getName());
+            ContentLab contentLab = ContentLab.get(getContext());
+
+            if(contentLab.getDiscipline(subject.getDisciplineId()) == null){
+                mNameTextView.setText("Данные удалены");
+            }else{
+                mNameTextView.setText(contentLab.getDiscipline(subject.getDisciplineId()).getName());
+            }
+
+            if (contentLab.getTeacher(subject.getTeacherId()) == null) {
+                mTeacherTextView.setText("Данные удалены");
+            }else{
+                mTeacherTextView.setText(contentLab.getTeacher(subject.getTeacherId()).getName());
+            }
+
+            if(contentLab.getAuditory(subject.getAuditoryId()) == null){
+                mAudView.setText("Данные удалены");
+            }else{
+                mAudView.setText(contentLab.getAuditory(subject.getAuditoryId()).getName());
+            }
+
+            if(contentLab.getTimes(subject.getTimesId()) == null){
+                mDateTextView.setText("Данные удалены");
+            }else{
+                mDateTextView.setText(contentLab.getTimes(subject.getTimesId()).getName());
+            }
+
         }
         @Override
         public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo){

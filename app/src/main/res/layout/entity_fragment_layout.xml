@@ -9,6 +9,17 @@
         android:id="@+id/dis_rec"
         android:layout_above="@+id/button_add_dc">
     </android.support.v7.widget.RecyclerView>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/no_entitis"
+        android:drawableTop="@drawable/ic_empty"
+        android:text="@string/empty_hint"
+        android:layout_centerInParent="true"
+        android:gravity="center"
+        android:visibility="invisible"/>
+
 <Button
     android:layout_width="match_parent"
     android:layout_height="wrap_content"

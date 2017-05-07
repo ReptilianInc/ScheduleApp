@@ -168,10 +168,18 @@ public class AddNewSubjectFragment extends Fragment implements View.OnClickListe
     }
     private void initText(){
         ContentLab cb = ContentLab.get(getContext());
-        mNameView.setText(cb.getDiscipline(mSubject.getDisciplineId()).getName());
-        mTeacherView.setText(cb.getTeacher(mSubject.getTeacherId()).getName());
-        mAuditView.setText(cb.getAuditory(mSubject.getAuditoryId()).getName());
-        mTimesView.setText(cb.getTimes(mSubject.getTimesId()).getName());
+        if(cb.getDiscipline(mSubject.getDisciplineId()) != null){
+            mNameView.setText(cb.getDiscipline(mSubject.getDisciplineId()).getName());
+        }
+        if(cb.getTeacher(mSubject.getTeacherId()) != null){
+            mTeacherView.setText(cb.getTeacher(mSubject.getTeacherId()).getName());
+        }
+        if(cb.getAuditory(mSubject.getAuditoryId()) != null){
+            mAuditView.setText(cb.getAuditory(mSubject.getAuditoryId()).getName());
+        }
+        if(cb.getTimes(mSubject.getTimesId()) != null){
+            mTimesView.setText(cb.getTimes(mSubject.getTimesId()).getName());
+        }
         mDayOfWeekView.setText(mSubject.getDayString());
         mWeekTypeView.setText(mSubject.getWeekString());
     }
