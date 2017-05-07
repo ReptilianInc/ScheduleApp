@@ -84,7 +84,7 @@ public abstract class ShowSubjectsAbstract extends Fragment{
             menu.add(0, v.getId(), 0, "Удалить").setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
                 @Override
                 public boolean onMenuItemClick(MenuItem item) {
-                    //ContentLab.get(getActivity()).deleteSubject(mSubjectExample);
+                    ContentLab.get(getActivity()).deleteSubject(mSubjectExample);
                     updateUI();
                     return false;
                 }

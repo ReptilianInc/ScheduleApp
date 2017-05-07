@@ -232,10 +232,10 @@ public class ContentLab {
         mTimeDatabase.insert(TimesTable.NAME, null, values);
     }
     /////Удаление объектов////////
-    /*public void deleteSubject(Subject subject){
-        String idstring = subject.getName();
-        mSubjectDatabase.delete(SubjectTable.NAME, SubjectTable.Cols.TITLE_UUID + " = ?", new String[]{idstring});
-    }*/
+    public void deleteSubject(Subject subject){
+        String idstring = subject.getId().toString();
+        mSubjectDatabase.delete(SubjectTable.NAME, SubjectTable.Cols.UUID + " = ?", new String[]{idstring});
+    }
     public void deleteDiscipline(Entity discipline){
         String idstring = discipline.getName();
         mDisciplineDatabase.delete(DisciplineTable.NAME, DisciplineTable.Cols.TITLE + " = ?", new String[]{idstring});
