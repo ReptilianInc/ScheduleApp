@@ -103,7 +103,7 @@ public class MainActivity extends AppCompatActivity {
         mFab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = AddNewSubjectActivity.newIntent(getApplication(), null, 0);
+                Intent intent = AddNewSubjectActivity.newIntent(getApplication(), null, ShowSubjectsAbstract.ACTION_CREATE);
                 startActivity(intent);
             }
         });

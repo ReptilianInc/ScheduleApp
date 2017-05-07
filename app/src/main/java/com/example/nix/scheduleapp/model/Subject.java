@@ -20,6 +20,10 @@ public class Subject {
         mDay = subjectParent.getDay();
         mWeekType = subjectParent.getWeekType();
         mId = UUID.randomUUID();
+        mDisciplineId = subjectParent.getDisciplineId();
+        mTeacherId = subjectParent.getTeacherId();
+        mAuditoryId = subjectParent.getAuditoryId();
+        mTimesId = subjectParent.getTimesId();
     }
     public String getDayString(){
         String str;

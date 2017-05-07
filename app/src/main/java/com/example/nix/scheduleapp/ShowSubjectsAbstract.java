@@ -21,6 +21,7 @@ public abstract class ShowSubjectsAbstract extends Fragment{
     protected abstract void updateUI();
     protected RecyclerView mRecyclerView;
     protected NewSubjectAdapter mAdapter;
+    public static final int ACTION_CREATE = 0, ACTION_EDIT = 1, ACTION_COPY = 2;
     public int i;
     @Override
     public void onCreate(Bundle savedInstanceState){
@@ -67,7 +68,7 @@ public abstract class ShowSubjectsAbstract extends Fragment{
             menu.add(0, v.getId(), 0, "Редактировать").setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
                 @Override
                 public boolean onMenuItemClick(MenuItem item) {
-                    Intent intent = AddNewSubjectActivity.newIntent(getActivity(), mSubjectExample.getId(), 1);
+                    Intent intent = AddNewSubjectActivity.newIntent(getActivity(), mSubjectExample.getId(), ACTION_EDIT);
                     startActivity(intent);
                     return false;
                 }
@@ -75,7 +76,7 @@ public abstract class ShowSubjectsAbstract extends Fragment{
             menu.add(0, v.getId(), 0, "Копировать в новую запись").setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
                 @Override
                 public boolean onMenuItemClick(MenuItem item) {
-                    Intent intent = AddNewSubjectActivity.newIntent(getActivity(), mSubjectExample.getId(), 2);
+                    Intent intent = AddNewSubjectActivity.newIntent(getActivity(), mSubjectExample.getId(), ACTION_COPY);
                     startActivity(intent);
                     updateUI();
                     return false;

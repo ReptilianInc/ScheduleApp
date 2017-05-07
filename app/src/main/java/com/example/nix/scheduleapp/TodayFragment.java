@@ -54,7 +54,6 @@ public class TodayFragment extends ShowSubjectsAbstract {
         }else{
             check_week = 1;
         }
-        Log.e("checkweek", Integer.toString(check_week));
         if (check_week % 2 == 0){
             switch (mCalendar.get(Calendar.DAY_OF_WEEK)){
                 case 2:

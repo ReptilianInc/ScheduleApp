@@ -31,7 +31,7 @@ public class AddNewSubjectFragment extends Fragment implements View.OnClickListe
     private static final String DIALOG_DAY3 = "DialogDay3";
     private static final String DIALOG_DAY4 = "DialogDay4";
     private Subject mSubject;
-    private int copy;
+    private int action;
     private UUID subjectId;
     private int action_type;
     @Override
@@ -39,14 +39,14 @@ public class AddNewSubjectFragment extends Fragment implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);
         subjectId = (UUID) getActivity().getIntent().getSerializableExtra(AddNewSubjectActivity.EXTRA_SUBJECT_ID);
-        copy = (int) getActivity().getIntent().getSerializableExtra(AddNewSubjectActivity.EXTRA_FOR_COPY);
-        if(subjectId == null && copy == 0){ // создание нового
+        action = (int) getActivity().getIntent().getSerializableExtra(AddNewSubjectActivity.EXTRA_FOR_COPY);
+        if(subjectId == null && action == ShowSubjectsAbstract.ACTION_CREATE){ // создание нового
             mSubject = new Subject();
         }
-        if (copy == 2){ //копирование
+        if (action == ShowSubjectsAbstract.ACTION_COPY){ //копирование
             mSubject = new Subject(ContentLab.get(getActivity()).getSubject(subjectId));
         }
-        if(copy == 1){ // редактирование
+        if(action == ShowSubjectsAbstract.ACTION_EDIT){ // редактирование
             mSubject = ContentLab.get(getContext()).getSubject(subjectId);
         }
     }
@@ -66,7 +66,9 @@ public class AddNewSubjectFragment extends Fragment implements View.OnClickListe
         mTimesView = (TextView)v.findViewById(R.id.times_redact);
         mDayOfWeekView = (TextView) v.findViewById(R.id.day_week);
         mWeekTypeView = (TextView) v.findViewById(R.id.week_type);
-        //initText();
+        if(action == ShowSubjectsAbstract.ACTION_COPY || action == ShowSubjectsAbstract.ACTION_EDIT){
+            initText();
+        }
         mTitle.setOnClickListener(this);
         mTeacher.setOnClickListener(this);
         mAuditory.setOnClickListener(this);
@@ -122,7 +124,7 @@ public class AddNewSubjectFragment extends Fragment implements View.OnClickListe
         ContentLab contentLab = ContentLab.get(getActivity());
         switch (item.getItemId()){
             case R.id.save_button:
-                switch (copy){
+                switch (action){
                     case 0:
                         if (mSubject.getDisciplineId() == null || mSubject.getAuditoryId() == null || mSubject.getTeacherId() == null ||
                                 mSubject.getTimesId() == null || mDayOfWeekView.getText() == "Коснитесь, чтобы назначить" ||
@@ -165,10 +167,13 @@ public class AddNewSubjectFragment extends Fragment implements View.OnClickListe
         }
     }
     private void initText(){
-        /*mTeacherView.setText(mSubject.getTeacherName());
-        mAuditView.setText(mSubject.getAuditory());
+        ContentLab cb = ContentLab.get(getContext());
+        mNameView.setText(cb.getDiscipline(mSubject.getDisciplineId()).getName());
+        mTeacherView.setText(cb.getTeacher(mSubject.getTeacherId()).getName());
+        mAuditView.setText(cb.getAuditory(mSubject.getAuditoryId()).getName());
+        mTimesView.setText(cb.getTimes(mSubject.getTimesId()).getName());
         mDayOfWeekView.setText(mSubject.getDayString());
-        mWeekTypeView.setText(mSubject.getWeekString());*/
+        mWeekTypeView.setText(mSubject.getWeekString());
     }
 
     @Override
