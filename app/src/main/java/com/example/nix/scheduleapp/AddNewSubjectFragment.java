@@ -22,30 +22,32 @@ import java.util.UUID;
  * Created by Nix on 27.08.2016.
  */
 public class AddNewSubjectFragment extends Fragment implements View.OnClickListener{
-    private TextView mTeacherView, mAuditView, mNameView;
+    private TextView mTeacherView, mAuditView, mNameView, mTimesView;
     private TextView mDayOfWeekView, mWeekTypeView;
     private RelativeLayout mTitle, mTeacher, mAuditory, mTime, mDay, mWeek;
     private static final int REQUEST_DATE3 = 2;
     private static final int REQUEST_DATE4 = 3;
+    private static final int REQUEST_UUID = 0;
     private static final String DIALOG_DAY3 = "DialogDay3";
     private static final String DIALOG_DAY4 = "DialogDay4";
     private Subject mSubject;
     private int copy;
-    private UUID crimeId;
+    private UUID subjectId;
+    private int action_type;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);
-        crimeId = (UUID) getActivity().getIntent().getSerializableExtra(AddNewSubjectActivity.EXTRA_SUBJECT_ID);
+        subjectId = (UUID) getActivity().getIntent().getSerializableExtra(AddNewSubjectActivity.EXTRA_SUBJECT_ID);
         copy = (int) getActivity().getIntent().getSerializableExtra(AddNewSubjectActivity.EXTRA_FOR_COPY);
-        if(crimeId == null && copy == 0){ // создание нового
+        if(subjectId == null && copy == 0){ // создание нового
             mSubject = new Subject();
         }
         if (copy == 2){ //копирование
-            mSubject = new Subject(ContentLab.get(getActivity()).getSubject(crimeId));
+            mSubject = new Subject(ContentLab.get(getActivity()).getSubject(subjectId));
         }
         if(copy == 1){ // редактирование
-            mSubject = ContentLab.get(getContext()).getSubject(crimeId);
+            mSubject = ContentLab.get(getContext()).getSubject(subjectId);
         }
     }
 
@@ -61,9 +63,10 @@ public class AddNewSubjectFragment extends Fragment implements View.OnClickListe
         mTeacherView = (TextView) v.findViewById(R.id.teacher_name_redact);
         mAuditView = (TextView) v.findViewById(R.id.audit_redact);
         mNameView = (TextView) v.findViewById(R.id.name_redact);
+        mTimesView = (TextView)v.findViewById(R.id.times_redact);
         mDayOfWeekView = (TextView) v.findViewById(R.id.day_week);
         mWeekTypeView = (TextView) v.findViewById(R.id.week_type);
-        initText();
+        //initText();
         mTitle.setOnClickListener(this);
         mTeacher.setOnClickListener(this);
         mAuditory.setOnClickListener(this);
@@ -86,6 +89,28 @@ public class AddNewSubjectFragment extends Fragment implements View.OnClickListe
             mSubject.setWeekType((int) data.getSerializableExtra(WeekPickerFragment.EXTRA_WEEKTYPE));
             mWeekTypeView.setText(mSubject.getWeekString());
         }
+        if(requestCode == REQUEST_UUID){
+            UUID id = (UUID)data.getSerializableExtra(EntityFragment.EXTRA_TEXT);
+            ContentLab contentLab = ContentLab.get(getContext());
+            switch (action_type){
+                case EntityFragment.DISCIPLINE_CODE:
+                    mSubject.setDisciplineId(contentLab.getDiscipline(id).getId());
+                    mNameView.setText(contentLab.getDiscipline(id).getName());
+                    break;
+                case EntityFragment.TEACHER_CODE:
+                    mSubject.setTeacherId(contentLab.getTeacher(id).getId());
+                    mTeacherView.setText(contentLab.getTeacher(id).getName());
+                    break;
+                case EntityFragment.AUDITORY_CODE:
+                    mSubject.setAuditoryId(contentLab.getAuditory(id).getId());
+                    mAuditView.setText(contentLab.getAuditory(id).getName());
+                    break;
+                case EntityFragment.TIMES_CODE:
+                    mSubject.setTimesId(contentLab.getTimes(id).getId());
+                    mTimesView.setText(contentLab.getTimes(id).getName());
+                    break;
+            }
+        }
     }
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
@@ -99,7 +124,8 @@ public class AddNewSubjectFragment extends Fragment implements View.OnClickListe
             case R.id.save_button:
                 switch (copy){
                     case 0:
-                        if (mSubject.getName() == null || mDayOfWeekView.getText() == "Коснитесь, чтобы назначить" ||
+                        if (mSubject.getDisciplineId() == null || mSubject.getAuditoryId() == null || mSubject.getTeacherId() == null ||
+                                mSubject.getTimesId() == null || mDayOfWeekView.getText() == "Коснитесь, чтобы назначить" ||
                                 mWeekTypeView.getText() == "Коснитесь, чтобы назначить"){
                             Toast.makeText(getContext(), "Данные заполнены некорректно", Toast.LENGTH_SHORT).show();
                         }else {
@@ -110,7 +136,8 @@ public class AddNewSubjectFragment extends Fragment implements View.OnClickListe
                         }
                         break;
                     case 1:
-                        if (mSubject.getName() == null || mDayOfWeekView.getText() == "Коснитесь, чтобы назначить" ||
+                        if (mSubject.getDisciplineId() == null || mSubject.getAuditoryId() == null || mSubject.getTeacherId() == null ||
+                                mSubject.getTimesId() == null || mDayOfWeekView.getText() == "Коснитесь, чтобы назначить" ||
                                 mWeekTypeView.getText() == "Коснитесь, чтобы назначить"){
                             Toast.makeText(getContext(), "Данные заполнены некорректно", Toast.LENGTH_SHORT).show();
                         }else {
@@ -120,7 +147,8 @@ public class AddNewSubjectFragment extends Fragment implements View.OnClickListe
                         }
                         break;
                     case 2:
-                        if (mSubject.getName() == null || mDayOfWeekView.getText() == "Коснитесь, чтобы назначить" ||
+                        if (mSubject.getDisciplineId() == null || mSubject.getAuditoryId() == null || mSubject.getTeacherId() == null ||
+                                mSubject.getTimesId() == null || mDayOfWeekView.getText() == "Коснитесь, чтобы назначить" ||
                                 mWeekTypeView.getText() == "Коснитесь, чтобы назначить"){
                             Toast.makeText(getContext(), "Данные заполнены некорректно", Toast.LENGTH_SHORT).show();
                         }else {
@@ -151,19 +179,23 @@ public class AddNewSubjectFragment extends Fragment implements View.OnClickListe
         switch (v.getId()){
             case R.id.rel1:
                 intent = PickEntityActivity.newIntent(getContext(), EntityFragment.DISCIPLINE_CODE);
-                startActivity(intent);
+                startActivityForResult(intent, REQUEST_UUID);
+                action_type = EntityFragment.DISCIPLINE_CODE;
                 break;
             case R.id.rel2:
                 intent = PickEntityActivity.newIntent(getContext(), EntityFragment.TEACHER_CODE);
-                startActivity(intent);
+                startActivityForResult(intent, REQUEST_UUID);
+                action_type = EntityFragment.TEACHER_CODE;
                 break;
             case R.id.rel3:
                 intent = PickEntityActivity.newIntent(getContext(), EntityFragment.AUDITORY_CODE);
-                startActivity(intent);
+                startActivityForResult(intent, REQUEST_UUID);
+                action_type = EntityFragment.AUDITORY_CODE;
                 break;
             case R.id.rel4:
                 intent = PickEntityActivity.newIntent(getContext(), EntityFragment.TIMES_CODE);
-                startActivity(intent);
+                startActivityForResult(intent, REQUEST_UUID);
+                action_type = EntityFragment.TIMES_CODE;
                 break;
             case R.id.rel5:
                 dialog = new DayPickerFragment();

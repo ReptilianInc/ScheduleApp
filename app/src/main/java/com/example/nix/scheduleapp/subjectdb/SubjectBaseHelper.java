@@ -20,7 +20,7 @@ public class SubjectBaseHelper extends SQLiteOpenHelper {
         db.execSQL("create table " + SubjectTable.NAME + "(" +
         " _id integer primary key autoincrement, " +
         SubjectTable.Cols.UUID + ", " +
-        SubjectTable.Cols.TITLE + ", " +
+        SubjectTable.Cols.TITLE_UUID + ", " +
         SubjectTable.Cols.DAY + ", " +
         SubjectTable.Cols.TEACHER_UUID + ", " +
         SubjectTable.Cols.AUDITORY_UUID + ", " +

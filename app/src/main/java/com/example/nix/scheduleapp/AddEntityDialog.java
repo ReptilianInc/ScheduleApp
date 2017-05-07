@@ -52,35 +52,43 @@ public class AddEntityDialog extends DialogFragment {
                         }*/
                         ContentLab cb = ContentLab.get(getContext());
                         if(entity != null){
-                            entity.setName(mEditText.getText().toString());
-                            switch (getExtraCode){
-                                case EntityFragment.DISCIPLINE_CODE:
-                                    cb.updateDiscipline(entity);
-                                    break;
-                                case EntityFragment.TEACHER_CODE:
-                                    cb.updateTeacher(entity);
-                                    break;
-                                case EntityFragment.AUDITORY_CODE:
-                                    cb.updateAuditory(entity);
-                                    break;
-                                case EntityFragment.TIMES_CODE:
-                                    cb.updateTimes(entity);
-                                    break;
+                            if(mEditText.getText().toString().length() != 0) {
+                                entity.setName(mEditText.getText().toString());
+                                switch (getExtraCode) {
+                                    case EntityFragment.DISCIPLINE_CODE:
+                                        cb.updateDiscipline(entity);
+                                        break;
+                                    case EntityFragment.TEACHER_CODE:
+                                        cb.updateTeacher(entity);
+                                        break;
+                                    case EntityFragment.AUDITORY_CODE:
+                                        cb.updateAuditory(entity);
+                                        break;
+                                    case EntityFragment.TIMES_CODE:
+                                        cb.updateTimes(entity);
+                                        break;
+                                }
+                            }else{
+                                Toast.makeText(getContext(), "Введите данные", Toast.LENGTH_SHORT).show();
                             }
                         }else{
-                            switch (getExtraCode){
-                                case EntityFragment.DISCIPLINE_CODE:
-                                    cb.addDiscipline(new Entity(mEditText.getText().toString()));
-                                    break;
-                                case EntityFragment.TEACHER_CODE:
-                                    cb.addTeacher(new Entity(mEditText.getText().toString()));
-                                    break;
-                                case EntityFragment.AUDITORY_CODE:
-                                    cb.addAuditory(new Entity(mEditText.getText().toString()));
-                                    break;
-                                case EntityFragment.TIMES_CODE:
-                                    cb.addTimes(new Entity(mEditText.getText().toString()));
-                                    break;
+                            if(mEditText.getText().toString().length() != 0){
+                                switch (getExtraCode){
+                                    case EntityFragment.DISCIPLINE_CODE:
+                                        cb.addDiscipline(new Entity(mEditText.getText().toString()));
+                                        break;
+                                    case EntityFragment.TEACHER_CODE:
+                                        cb.addTeacher(new Entity(mEditText.getText().toString()));
+                                        break;
+                                    case EntityFragment.AUDITORY_CODE:
+                                        cb.addAuditory(new Entity(mEditText.getText().toString()));
+                                        break;
+                                    case EntityFragment.TIMES_CODE:
+                                        cb.addTimes(new Entity(mEditText.getText().toString()));
+                                        break;
+                                }
+                            }else {
+                                Toast.makeText(getContext(), "Введите данные", Toast.LENGTH_SHORT).show();
                             }
                         }
                     }

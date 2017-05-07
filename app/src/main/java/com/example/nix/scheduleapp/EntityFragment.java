@@ -18,8 +18,8 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import com.example.nix.scheduleapp.model.Entity;
-import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 
 /**
@@ -27,6 +27,7 @@ import java.util.List;
  */
 
 public class EntityFragment extends Fragment{
+    public static final String EXTRA_TEXT = "com.example.nix.scheduleapp";
     private RecyclerView mRecyclerView;
     private NewAdapter mAdapter;
     private Button mAddButton;
@@ -140,6 +141,10 @@ public class EntityFragment extends Fragment{
         @Override
         public void onClick(View v) {
             if (action_code){
+                //sendResult(Activity.RESULT_OK, mExample.getId());
+                Intent intent = new Intent();
+                intent.putExtra(EXTRA_TEXT, mExample.getId());
+                getActivity().setResult(Activity.RESULT_OK, intent);
                 getActivity().finish();
             }else{
                 /*AddEntityDialog add = new AddEntityDialog();
@@ -242,4 +247,16 @@ public class EntityFragment extends Fragment{
         updateUI(result);
         Log.d("onResume", "after dismiss");
     }
+    /*private void sendResult(int resultCode, UUID id){
+        if (getTargetFragment() == null)
+        {
+            return;
+        }
+        Intent intent = new Intent();
+        intent.putExtra(EXTRA_TEXT, id);
+        getTargetFragment().onActivityResult(getTargetRequestCode(), resultCode, intent);
+    }*/
+    /*public void returnResult(){
+        getActivity().setResult(Activity.RESULT_OK, null);
+    }*/
 }

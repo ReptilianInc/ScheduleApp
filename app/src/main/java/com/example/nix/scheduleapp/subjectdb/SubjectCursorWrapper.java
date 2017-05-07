@@ -19,11 +19,11 @@ public class SubjectCursorWrapper extends CursorWrapper {
         int day = getInt(getColumnIndex(SubjectTable.Cols.DAY));
         if (weektype == weekTypeNeed && day == dayNeed){
             Subject subject = new Subject(UUID.fromString(getString(getColumnIndex(SubjectTable.Cols.UUID))));
-            subject.setName(getString(getColumnIndex(SubjectTable.Cols.TITLE)));
+            subject.setDisciplineId(UUID.fromString(getString(getColumnIndex(SubjectTable.Cols.TITLE_UUID))));
             subject.setDay(getInt(getColumnIndex(SubjectTable.Cols.DAY)));
-            subject.setTeacherName(getString(getColumnIndex(SubjectTable.Cols.TEACHER_UUID)));
-            subject.setAuditory(getString(getColumnIndex(SubjectTable.Cols.AUDITORY_UUID)));
-            subject.setTimes(getString(getColumnIndex(SubjectTable.Cols.TIMES_UUID)));
+            subject.setTeacherId(UUID.fromString(getString(getColumnIndex(SubjectTable.Cols.TEACHER_UUID))));
+            subject.setAuditoryId(UUID.fromString(getString(getColumnIndex(SubjectTable.Cols.AUDITORY_UUID))));
+            subject.setTimesId(UUID.fromString(getString(getColumnIndex(SubjectTable.Cols.TIMES_UUID))));
             subject.setWeekType(getInt(getColumnIndex(SubjectTable.Cols.WEEKTYPE)));
             return subject;
         }else {
@@ -32,11 +32,11 @@ public class SubjectCursorWrapper extends CursorWrapper {
     }
     public Subject getSubject(){
         Subject subject = new Subject(UUID.fromString(getString(getColumnIndex(SubjectTable.Cols.UUID))));
-        subject.setName(getString(getColumnIndex(SubjectTable.Cols.TITLE)));
+        subject.setDisciplineId(UUID.fromString(getString(getColumnIndex(SubjectTable.Cols.TITLE_UUID))));
         subject.setDay(getInt(getColumnIndex(SubjectTable.Cols.DAY)));
-        subject.setTeacherName(getString(getColumnIndex(SubjectTable.Cols.TEACHER_UUID)));
-        subject.setAuditory(getString(getColumnIndex(SubjectTable.Cols.AUDITORY_UUID)));
-        subject.setTimes(getString(getColumnIndex(SubjectTable.Cols.TIMES_UUID)));
+        subject.setTeacherId(UUID.fromString(getString(getColumnIndex(SubjectTable.Cols.TEACHER_UUID))));
+        subject.setAuditoryId(UUID.fromString(getString(getColumnIndex(SubjectTable.Cols.AUDITORY_UUID))));
+        subject.setTimesId(UUID.fromString(getString(getColumnIndex(SubjectTable.Cols.TIMES_UUID))));
         subject.setWeekType(getInt(getColumnIndex(SubjectTable.Cols.WEEKTYPE)));
         return subject;
     }

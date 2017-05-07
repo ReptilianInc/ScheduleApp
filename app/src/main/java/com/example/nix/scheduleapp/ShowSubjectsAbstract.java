@@ -11,9 +11,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-
 import com.example.nix.scheduleapp.model.Subject;
-
 import java.util.List;
 
 /**
@@ -38,7 +36,7 @@ public abstract class ShowSubjectsAbstract extends Fragment{
         mRecyclerView = (RecyclerView) v.findViewById(R.id.recycler_monday);
         mRecyclerView.addItemDecoration(new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL_LIST));
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        updateUI();
+        //updateUI();
         return v;
     }
 
@@ -58,10 +56,10 @@ public abstract class ShowSubjectsAbstract extends Fragment{
         }
         public void bindSubject(Subject subject){
             mSubjectExample = subject;
-            mNameTextView.setText(mSubjectExample.getName());
-            mTeacherTextView.setText(mSubjectExample.getTeacherName());
-            mAudView.setText(mSubjectExample.getAuditory());
-            //mDateTextView.setText(mSubjectExample.getStartTime() + "-" + mSubjectExample.getEndTime());
+            mNameTextView.setText(ContentLab.get(getContext()).getDiscipline(subject.getDisciplineId()).getName());
+            mTeacherTextView.setText(ContentLab.get(getContext()).getTeacher(subject.getTeacherId()).getName());
+            mAudView.setText(ContentLab.get(getContext()).getAuditory(subject.getAuditoryId()).getName());
+            mDateTextView.setText(ContentLab.get(getContext()).getTimes(subject.getTimesId()).getName());
         }
         @Override
         public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo){
@@ -86,7 +84,7 @@ public abstract class ShowSubjectsAbstract extends Fragment{
             menu.add(0, v.getId(), 0, "Удалить").setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
                 @Override
                 public boolean onMenuItemClick(MenuItem item) {
-                    ContentLab.get(getActivity()).deleteSubject(mSubjectExample);
+                    //ContentLab.get(getActivity()).deleteSubject(mSubjectExample);
                     updateUI();
                     return false;
                 }
@@ -116,4 +114,9 @@ public abstract class ShowSubjectsAbstract extends Fragment{
         }
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        updateUI();
+    }
 }

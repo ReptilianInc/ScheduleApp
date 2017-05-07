@@ -4,6 +4,8 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
+
 import com.example.nix.scheduleapp.auditorydb.AuditoryBaseHelper;
 import com.example.nix.scheduleapp.auditorydb.AuditoryCursorWrapper;
 import com.example.nix.scheduleapp.auditorydb.AuditoryDbSchema.AuditoryTable;
@@ -172,11 +174,12 @@ public class ContentLab {
     private static ContentValues getSubjectContentValues(Subject subject){
         ContentValues values = new ContentValues();
         values.put(SubjectTable.Cols.UUID, subject.getId().toString());
-        values.put(SubjectTable.Cols.TITLE, subject.getName());
+        values.put(SubjectTable.Cols.TITLE_UUID, subject.getDisciplineId().toString());
         values.put(SubjectTable.Cols.DAY, subject.getDay());
-        //values.put(SubjectTable.Cols.TEACHERNAME, subject.getTeacherName());
-        //values.put(SubjectTable.Cols.AUDITORY, subject.getAuditory());
-        //values.put(SubjectTable.Cols.WEEKTYPE, subject.isWeekType());
+        values.put(SubjectTable.Cols.TEACHER_UUID, subject.getTeacherId().toString());
+        values.put(SubjectTable.Cols.AUDITORY_UUID, subject.getAuditoryId().toString());
+        values.put(SubjectTable.Cols.TIMES_UUID, subject.getTimesId().toString());
+        values.put(SubjectTable.Cols.WEEKTYPE, subject.getWeekType());
         return values;
     }
 
@@ -229,10 +232,10 @@ public class ContentLab {
         mTimeDatabase.insert(TimesTable.NAME, null, values);
     }
     /////Удаление объектов////////
-    public void deleteSubject(Subject subject){
+    /*public void deleteSubject(Subject subject){
         String idstring = subject.getName();
-        mSubjectDatabase.delete(SubjectTable.NAME, SubjectTable.Cols.TITLE + " = ?", new String[]{idstring});
-    }
+        mSubjectDatabase.delete(SubjectTable.NAME, SubjectTable.Cols.TITLE_UUID + " = ?", new String[]{idstring});
+    }*/
     public void deleteDiscipline(Entity discipline){
         String idstring = discipline.getName();
         mDisciplineDatabase.delete(DisciplineTable.NAME, DisciplineTable.Cols.TITLE + " = ?", new String[]{idstring});

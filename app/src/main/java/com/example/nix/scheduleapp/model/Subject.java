@@ -5,15 +5,11 @@ import java.util.UUID;
  * Created by Nix on 24.08.2016.
  */
 public class Subject {
-    private String mName;//
     private int mDay;//
-    private String mTeacherName;//
-    private String mAuditory;//
-    private String mTimes;
     private int mWeekType;//
     public static final int WEEK_TYPE_ODD = 1;
     public static final int WEEK_TYPE_EVEN = 2;
-    private UUID mId;
+    private UUID mId, mDisciplineId, mTeacherId, mAuditoryId, mTimesId;
     public Subject(){
         this(UUID.randomUUID());
     }
@@ -21,9 +17,6 @@ public class Subject {
         mId = id;
     }
     public Subject (Subject subjectParent){
-        mName = subjectParent.getName();
-        mTeacherName = subjectParent.getTeacherName();
-        mAuditory = subjectParent.getAuditory();
         mDay = subjectParent.getDay();
         mWeekType = subjectParent.getWeekType();
         mId = UUID.randomUUID();
@@ -64,30 +57,10 @@ public class Subject {
         }
         return str;
     }
-    public String getName() {
-        return mName;
-    }
-
-    public void setName(String name) {
-        mName = name;
-    }
 
 
-    public String getTeacherName() {
-        return mTeacherName;
-    }
 
-    public void setTeacherName(String teacherName) {
-        mTeacherName = teacherName;
-    }
 
-    public String getAuditory() {
-        return mAuditory;
-    }
-
-    public void setAuditory(String auditory) {
-        mAuditory = auditory;
-    }
 
     public int getWeekType() {
         return mWeekType;
@@ -108,11 +81,36 @@ public class Subject {
         mDay = day;
     }
 
-    public String getTimes() {
-        return mTimes;
+
+    public UUID getDisciplineId() {
+        return mDisciplineId;
     }
 
-    public void setTimes(String times) {
-        mTimes = times;
+    public void setDisciplineId(UUID titleId) {
+        mDisciplineId = titleId;
+    }
+
+    public UUID getTeacherId() {
+        return mTeacherId;
+    }
+
+    public void setTeacherId(UUID teacherId) {
+        mTeacherId = teacherId;
+    }
+
+    public UUID getAuditoryId() {
+        return mAuditoryId;
+    }
+
+    public void setAuditoryId(UUID auditoryId) {
+        mAuditoryId = auditoryId;
+    }
+
+    public UUID getTimesId() {
+        return mTimesId;
+    }
+
+    public void setTimesId(UUID timesId) {
+        mTimesId = timesId;
     }
 }

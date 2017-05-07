@@ -14,33 +14,28 @@ public class OddSubjects extends ShowSubjectsAbstract {
         List<Subject> subjects;
         switch (i){
             case 2:
-                subjects = contentLab.getSubjects(2,2);
+                subjects = contentLab.getSubjects(Subject.WEEK_TYPE_ODD,2);
                 break;
             case 3:
-                subjects = contentLab.getSubjects(2,3);
+                subjects = contentLab.getSubjects(Subject.WEEK_TYPE_ODD,3);
                 break;
             case 4:
-                subjects = contentLab.getSubjects(2,4);
+                subjects = contentLab.getSubjects(Subject.WEEK_TYPE_ODD,4);
                 break;
             case 5:
-                subjects = contentLab.getSubjects(2,5);
+                subjects = contentLab.getSubjects(Subject.WEEK_TYPE_ODD,5);
                 break;
             case 6:
-                subjects = contentLab.getSubjects(2,6);
+                subjects = contentLab.getSubjects(Subject.WEEK_TYPE_ODD,6);
                 break;
             case 7:
-                subjects = contentLab.getSubjects(2,7);
+                subjects = contentLab.getSubjects(Subject.WEEK_TYPE_ODD,7);
                 break;
             default:
-                subjects = contentLab.getSubjects(0,0);
+                subjects = contentLab.getSubjects(Subject.WEEK_TYPE_ODD,2);
         }
 
         mAdapter = new NewSubjectAdapter(subjects);
         mRecyclerView.setAdapter(mAdapter);
-    }
-    @Override
-    public void onResume(){
-        super.onResume();
-        updateUI();
     }
 }

@@ -9,7 +9,7 @@ public class SubjectDbSchema {
         public static final class Cols
         {
             public static final String UUID = "uuid";
-            public static final String TITLE = "title";
+            public static final String TITLE_UUID = "title";
             public static final String DAY = "day";
             public static final String TEACHER_UUID = "teachername";
             public static final String AUDITORY_UUID = "auditory";
