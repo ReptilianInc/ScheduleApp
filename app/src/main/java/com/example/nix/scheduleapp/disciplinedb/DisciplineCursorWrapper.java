@@ -2,11 +2,8 @@ package com.example.nix.scheduleapp.disciplinedb;
 
 import android.database.Cursor;
 import android.database.CursorWrapper;
-
 import com.example.nix.scheduleapp.model.Entity;
-
 import java.util.UUID;
-
 import static com.example.nix.scheduleapp.disciplinedb.DisciplineDbSchema.*;
 
 /**

@@ -41,4 +41,5 @@
     <string name="choose_entity">Выбор элемента</string>
     <string name="dis_hint">Пишите здесь</string>
     <string name="empty_hint">Записей нет.</string>
+    <string name="credits">Курсовая работа по дисциплине \"Программирование в информационных системах\". Автор: Карпунин Никита Вячеславович. Группа: 3ВТИ-3ДБ-006.</string>
 </resources>

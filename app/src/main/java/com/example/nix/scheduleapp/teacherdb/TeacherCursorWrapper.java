@@ -2,10 +2,8 @@ package com.example.nix.scheduleapp.teacherdb;
 
 import android.database.Cursor;
 import android.database.CursorWrapper;
-
 import com.example.nix.scheduleapp.model.Entity;
 import com.example.nix.scheduleapp.teacherdb.TeacherDbSchema.TeacherTable;
-
 import java.util.UUID;
 
 /**

@@ -4,8 +4,6 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.util.Log;
-
 import com.example.nix.scheduleapp.auditorydb.AuditoryBaseHelper;
 import com.example.nix.scheduleapp.auditorydb.AuditoryCursorWrapper;
 import com.example.nix.scheduleapp.auditorydb.AuditoryDbSchema.AuditoryTable;

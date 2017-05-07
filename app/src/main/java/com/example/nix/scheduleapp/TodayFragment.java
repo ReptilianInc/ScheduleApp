@@ -4,6 +4,8 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.widget.TextView;
 import com.example.nix.scheduleapp.model.Subject;
+
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -19,7 +21,7 @@ public class TodayFragment extends ShowSubjectsAbstract {
     @Override
     protected void updateUI(){
         ContentLab contentLab = ContentLab.get(getActivity());
-        List<Subject> subjects;
+        List<Subject> subjects = new ArrayList<>();
         int check_week;
         mDate = new Date();
         mCalendar = Calendar.getInstance();
@@ -35,48 +37,44 @@ public class TodayFragment extends ShowSubjectsAbstract {
         if (check_week % 2 == 0){
             switch (mCalendar.get(Calendar.DAY_OF_WEEK)){
                 case 2:
-                    subjects = contentLab.getSubjects(1, 2);
+                    subjects = contentLab.getSubjects(Subject.WEEK_TYPE_EVEN, 2);
                     break;
                 case 3:
-                    subjects = contentLab.getSubjects(1,3);
+                    subjects = contentLab.getSubjects(Subject.WEEK_TYPE_EVEN,3);
                     break;
                 case 4:
-                    subjects = contentLab.getSubjects(1,4);
+                    subjects = contentLab.getSubjects(Subject.WEEK_TYPE_EVEN,4);
                     break;
                 case 5:
-                    subjects = contentLab.getSubjects(1,5);
+                    subjects = contentLab.getSubjects(Subject.WEEK_TYPE_EVEN,5);
                     break;
                 case 6:
-                    subjects = contentLab.getSubjects(1,6);
+                    subjects = contentLab.getSubjects(Subject.WEEK_TYPE_EVEN,6);
                     break;
                 case 7:
-                    subjects = contentLab.getSubjects(1,7);
+                    subjects = contentLab.getSubjects(Subject.WEEK_TYPE_EVEN,7);
                     break;
-                default:
-                    subjects = contentLab.getSubjects(0,0);
             }
         }else {
             switch (mCalendar.get(Calendar.DAY_OF_WEEK)){
                 case 2:
-                    subjects = contentLab.getSubjects(2, 2);
+                    subjects = contentLab.getSubjects(Subject.WEEK_TYPE_ODD, 2);
                     break;
                 case 3:
-                    subjects = contentLab.getSubjects(2,3);
+                    subjects = contentLab.getSubjects(Subject.WEEK_TYPE_ODD,3);
                     break;
                 case 4:
-                    subjects = contentLab.getSubjects(2,4);
+                    subjects = contentLab.getSubjects(Subject.WEEK_TYPE_ODD,4);
                     break;
                 case 5:
-                    subjects = contentLab.getSubjects(2,5);
+                    subjects = contentLab.getSubjects(Subject.WEEK_TYPE_ODD,5);
                     break;
                 case 6:
-                    subjects = contentLab.getSubjects(2,6);
+                    subjects = contentLab.getSubjects(Subject.WEEK_TYPE_ODD,6);
                     break;
                 case 7:
-                    subjects = contentLab.getSubjects(2,7);
+                    subjects = contentLab.getSubjects(Subject.WEEK_TYPE_ODD,7);
                     break;
-                default:
-                    subjects = contentLab.getSubjects(0,0);
             }
         }
         if(subjects.isEmpty()){
@@ -84,8 +82,13 @@ public class TodayFragment extends ShowSubjectsAbstract {
         }else{
             mEmptyTextView.setVisibility(TextView.INVISIBLE);
         }
-        mAdapter = new NewSubjectAdapter(subjects);
-        mRecyclerView.setAdapter(mAdapter);
+        if(mAdapter == null){
+            mAdapter = new NewSubjectAdapter(subjects);
+            mRecyclerView.setAdapter(mAdapter);
+        }else{
+            mAdapter.setSubjects(subjects);
+            mAdapter.notifyDataSetChanged();
+        }
     }
     @Override
     public void onResume(){

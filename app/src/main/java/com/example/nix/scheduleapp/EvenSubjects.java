@@ -1,7 +1,6 @@
 package com.example.nix.scheduleapp;
 
 import android.widget.TextView;
-
 import com.example.nix.scheduleapp.model.Subject;
 import java.util.List;
 
@@ -40,8 +39,13 @@ public class EvenSubjects extends ShowSubjectsAbstract {
         }else{
             mEmptyTextView.setVisibility(TextView.INVISIBLE);
         }
-        mAdapter = new NewSubjectAdapter(subjects);
-        mRecyclerView.setAdapter(mAdapter);
+        if(mAdapter == null){
+            mAdapter = new NewSubjectAdapter(subjects);
+            mRecyclerView.setAdapter(mAdapter);
+        }else{
+            mAdapter.setSubjects(subjects);
+            mAdapter.notifyDataSetChanged();
+        }
 
     }
 }

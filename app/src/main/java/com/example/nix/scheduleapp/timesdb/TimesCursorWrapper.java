@@ -2,10 +2,8 @@ package com.example.nix.scheduleapp.timesdb;
 
 import android.database.Cursor;
 import android.database.CursorWrapper;
-
 import com.example.nix.scheduleapp.model.Entity;
 import com.example.nix.scheduleapp.timesdb.TimesDbSchema.TimesTable;
-
 import java.util.UUID;
 
 /**

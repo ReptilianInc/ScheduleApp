@@ -3,7 +3,6 @@ package com.example.nix.scheduleapp.auditorydb;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-
 import static com.example.nix.scheduleapp.auditorydb.AuditoryDbSchema.*;
 
 /**

@@ -1,10 +1,8 @@
 package com.example.nix.scheduleapp;
 
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.DialogFragment;
@@ -12,9 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
-
 import com.example.nix.scheduleapp.model.Entity;
-
 import java.util.UUID;
 
 /**
@@ -45,11 +41,6 @@ public class AddEntityDialog extends DialogFragment {
                 .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        /*if (mEditText.getText().toString().length() > 0){
-                            sendResult(Activity.RESULT_OK, mEditText.getText().toString());
-                        }else {
-                            Toast.makeText(getContext(), "Введите данные", Toast.LENGTH_LONG).show();
-                        }*/
                         ContentLab cb = ContentLab.get(getContext());
                         if(entity != null){
                             if(mEditText.getText().toString().length() != 0) {
@@ -95,15 +86,7 @@ public class AddEntityDialog extends DialogFragment {
                 })
                 .create();
     }
-    /*private void sendResult(int resultCode, String text){
-        if (getTargetFragment() == null)
-        {
-            return;
-        }
-        Intent intent = new Intent();
-        intent.putExtra(EXTRA_TEXT, text);
-        getTargetFragment().onActivityResult(getTargetRequestCode(), resultCode, intent);
-    }*/
+
     public static AddEntityDialog newInstance(UUID id, int code){
         Bundle bundle = new Bundle();
         bundle.putSerializable(GET_UUID, id);

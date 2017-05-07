@@ -3,7 +3,6 @@ package com.example.nix.scheduleapp.disciplinedb;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-
 import com.example.nix.scheduleapp.disciplinedb.DisciplineDbSchema.DisciplineTable;
 
 /**

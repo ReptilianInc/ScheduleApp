@@ -51,4 +51,24 @@
     android:textSize="15sp"
     android:textColor="@color/colorWhite"
     android:textStyle="bold"/>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_centerInParent="true"
+        android:layout_below="@+id/clear_button"
+        android:layout_marginTop="4dp">
+        <ImageView
+            android:layout_width="84dp"
+            android:layout_height="84dp"
+            android:src="@drawable/ic_swag"
+            android:layout_gravity="center"
+            android:layout_margin="6dp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/credits"
+            android:textSize="18sp"
+            android:gravity="center"/>
+    </LinearLayout>
 </RelativeLayout>

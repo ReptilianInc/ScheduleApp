@@ -15,10 +15,6 @@ public class Entity {
     public Entity(){
         this(UUID.randomUUID());
     }
-    public Entity(Entity entityParent){
-        mId = UUID.randomUUID();
-        mName = entityParent.getName();
-    }
     public Entity(String name){
         mName = name;
         mId = UUID.randomUUID();

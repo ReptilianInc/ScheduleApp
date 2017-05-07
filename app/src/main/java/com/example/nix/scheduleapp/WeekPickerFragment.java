@@ -9,7 +9,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-
 import com.example.nix.scheduleapp.model.Subject;
 
 /**
@@ -17,7 +16,7 @@ import com.example.nix.scheduleapp.model.Subject;
  */
 public class WeekPickerFragment extends DialogFragment{
     private TextView mEven, mOdd;
-    public static final String EXTRA_WEEKTYPE = "com.bignerdranch.android.criminalintent.WEEKTYPE";
+    public static final String EXTRA_WEEKTYPE = "com.example.nix.scheduleapp.WEEKTYPE";
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
         getDialog().setTitle(R.string.name_of_week_fragment);
         View v = inflater.inflate(R.layout.dialog_week, null);
