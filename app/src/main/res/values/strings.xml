@@ -40,4 +40,5 @@
     <string name="add_discipline_or_hw">Добавить элемент&#8230;</string>
     <string name="choose_entity">Выбор элемента</string>
     <string name="dis_hint">Пишите здесь</string>
+    <string name="empty_hint">Записей нет.</string>
 </resources>

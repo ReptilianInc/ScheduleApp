@@ -2,16 +2,8 @@ package com.example.nix.scheduleapp;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-
+import android.widget.TextView;
 import com.example.nix.scheduleapp.model.Subject;
-
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -20,24 +12,10 @@ import java.util.List;
  * Created by Nix on 25.08.2016.
  */
 public class TodayFragment extends ShowSubjectsAbstract {
-    private RecyclerView mRecyclerView;
     private NewSubjectAdapter mAdapter;
     private Date mDate;
     private Calendar mCalendar;
     private SharedPreferences mSharedPreferences;
-    @Override
-    public void onCreate(Bundle savedInstanceState){
-        super.onCreate(savedInstanceState);
-    }
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
-        View v = inflater.inflate(R.layout.content_monday, container, false);
-        mRecyclerView = (RecyclerView) v.findViewById(R.id.recycler_monday);
-        mRecyclerView.addItemDecoration(new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL_LIST));
-        mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        updateUI();
-        return v;
-    }
     @Override
     protected void updateUI(){
         ContentLab contentLab = ContentLab.get(getActivity());
@@ -101,7 +79,11 @@ public class TodayFragment extends ShowSubjectsAbstract {
                     subjects = contentLab.getSubjects(0,0);
             }
         }
-
+        if(subjects.isEmpty()){
+            mEmptyTextView.setVisibility(TextView.VISIBLE);
+        }else{
+            mEmptyTextView.setVisibility(TextView.INVISIBLE);
+        }
         mAdapter = new NewSubjectAdapter(subjects);
         mRecyclerView.setAdapter(mAdapter);
     }

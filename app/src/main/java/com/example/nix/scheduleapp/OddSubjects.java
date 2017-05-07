@@ -1,5 +1,7 @@
 package com.example.nix.scheduleapp;
 
+import android.widget.TextView;
+
 import com.example.nix.scheduleapp.model.Subject;
 import java.util.List;
 
@@ -34,7 +36,11 @@ public class OddSubjects extends ShowSubjectsAbstract {
             default:
                 subjects = contentLab.getSubjects(Subject.WEEK_TYPE_ODD,2);
         }
-
+        if(subjects.isEmpty()){
+            mEmptyTextView.setVisibility(TextView.VISIBLE);
+        }else{
+            mEmptyTextView.setVisibility(TextView.INVISIBLE);
+        }
         mAdapter = new NewSubjectAdapter(subjects);
         mRecyclerView.setAdapter(mAdapter);
     }

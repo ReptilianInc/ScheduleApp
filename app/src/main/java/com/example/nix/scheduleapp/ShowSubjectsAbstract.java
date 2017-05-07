@@ -21,6 +21,7 @@ public abstract class ShowSubjectsAbstract extends Fragment{
     protected abstract void updateUI();
     protected RecyclerView mRecyclerView;
     protected NewSubjectAdapter mAdapter;
+    protected TextView mEmptyTextView;
     public static final int ACTION_CREATE = 0, ACTION_EDIT = 1, ACTION_COPY = 2;
     public int i;
     @Override
@@ -33,11 +34,11 @@ public abstract class ShowSubjectsAbstract extends Fragment{
     }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
-        View v = inflater.inflate(R.layout.content_monday, container, false);
+        View v = inflater.inflate(R.layout.content_subjects, container, false);
         mRecyclerView = (RecyclerView) v.findViewById(R.id.recycler_monday);
+        mEmptyTextView = (TextView)v.findViewById(R.id.empty_message);
         mRecyclerView.addItemDecoration(new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL_LIST));
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        //updateUI();
         return v;
     }
 
