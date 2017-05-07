@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.widget.TextView;
 import com.example.nix.scheduleapp.model.Subject;
-
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;

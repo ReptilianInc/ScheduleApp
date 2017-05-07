@@ -93,9 +93,9 @@ public class EntityFragment extends Fragment{
             @Override
             public void onClick(View v) {
                 AddEntityDialog add = AddEntityDialog.newInstance(result);
-                add.setTargetFragment(EntityFragment.this, REQUEST_CODE);
-                add.show(getFragmentManager(), "kek");
-                getFragmentManager().executePendingTransactions();
+                //http://stackoverflow.com/questions/10436120/failure-saving-state-target-not-in-fragment-manager-settargetfragment
+                add.show(getChildFragmentManager(), "kek");
+                getChildFragmentManager().executePendingTransactions();
                 add.getDialog().setOnDismissListener(new DialogInterface.OnDismissListener() {
                     @Override
                     public void onDismiss(DialogInterface dialog) {
