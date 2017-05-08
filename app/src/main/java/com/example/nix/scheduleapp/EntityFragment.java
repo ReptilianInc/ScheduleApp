@@ -145,10 +145,9 @@ public class EntityFragment extends Fragment{
                 getActivity().setResult(Activity.RESULT_OK, intent);
                 getActivity().finish();
             }else{
-                AddEntityDialog dialog = AddEntityDialog.newInstance(mExample.getId(), result);
-                dialog.setTargetFragment(EntityFragment.this, REQUEST_CODE);
-                dialog.show(getFragmentManager(), "kek");
-                getFragmentManager().executePendingTransactions();
+                AddEntityDialog dialog = AddEntityDialog.newInstance(mExample.getId(), result);;
+                dialog.show(getChildFragmentManager(), "kek");
+                getChildFragmentManager().executePendingTransactions();
                 dialog.getDialog().setOnDismissListener(new DialogInterface.OnDismissListener() {
                     @Override
                     public void onDismiss(DialogInterface dialog) {
