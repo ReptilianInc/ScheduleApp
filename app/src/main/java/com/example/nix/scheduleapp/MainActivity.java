@@ -123,6 +123,7 @@ public class MainActivity extends AppCompatActivity {
                 invalidateOptionsMenu();
                 setWeek();
                 VISIBLE_BUTTON = false;
+                mFab.setVisibility(FloatingActionButton.VISIBLE);
                 fm.beginTransaction()
                         .remove(fragment)
                         .commit();
